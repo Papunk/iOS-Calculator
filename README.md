@@ -6,5 +6,5 @@ The purpose of this project is to learn how to use storyboards and Swift to deve
 - Make a fully functional math parser
   - Parenthesis support
   - Input checker
-- Implement iOS features like notifications, shortcuts, and widgets
+- Implement iOS features like notifications, shortcuts, siri integration and widgets
 - Multiple app icons
