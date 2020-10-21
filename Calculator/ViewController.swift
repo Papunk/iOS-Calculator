@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     var operatorElems: [String] = []
     
     var bracketStack = 0
-    
 
     
     override func viewDidLoad() {
@@ -123,9 +122,6 @@ class ViewController: UIViewController {
         }
         return 0
     }
-    
-    
-    
     
     
     
