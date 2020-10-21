@@ -141,6 +141,10 @@ class ViewController: UIViewController {
         outputScreen.text! += text
     }
     
+    func reduceTextSize() {
+        //this func will make sure that text doesnt slide off the end of the screen
+    }
+    
     
     func checkLast(of word: String, _ elems: String...) -> Bool {
         return checkLast(of: word, elems)
