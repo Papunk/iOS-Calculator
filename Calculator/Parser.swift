@@ -67,13 +67,16 @@ func tokenize(expression: String) -> [String] {
         
         // check if its an operator
         // check if its a number
-        
     }
     
     return tokens
 }
 
-func parse(expression: String) {
+func parse(expression: String) -> Double {
+    /**
+     #Desc
+     parser a math expression and returns the result
+     */
     // tokenize expression
     // whenever a parenthesis is found, recursion is used to solve
     // otherwise:
@@ -81,4 +84,5 @@ func parse(expression: String) {
     // second pass to look for additions and subtractions
     
     // base case: only two numbers
+    return 0
 }
