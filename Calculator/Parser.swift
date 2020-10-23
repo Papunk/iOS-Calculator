@@ -27,13 +27,13 @@ enum Number: Int, CaseIterable {
     case nine
 }
 
-enum SpecialCharacters: String, CaseIterable {
+enum SpecialCharacters: Character, CaseIterable {
     case leftBracket = "("
     case rightBracket = ")"
     case dot = "."
 }
 
-enum Operator: String, CaseIterable {
+enum Operator: Character, CaseIterable {
     case mult = "×"
     case div = "÷"
     case add = "+"
@@ -44,8 +44,25 @@ func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Dou
     return f(a, b)
 }
 
-func parseMath(_ expression: String) {
+func tokenize(expression: String) {
+    /**
+     #Desc:
+        This function
+     */
+    var tokens = Array<String>()
+    var currentToken: String
+    
     for char in expression {
-        
+        for op in Operator.allCases {
+            if char == op.rawValue {
+                
+            }
+        }
     }
+}
+
+func parse(expression: [String]) {
+    // first pass to look for multiplications and divisions
+    // second pass to look for additions and subtractions
+    // whenever a parenthesis is found, recursion is used to solve
 }
