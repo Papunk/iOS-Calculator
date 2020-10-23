@@ -44,25 +44,41 @@ func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Dou
     return f(a, b)
 }
 
-func tokenize(expression: String) {
+func tokenize(expression: String) -> [String] {
     /**
      #Desc:
-        This function
+     This function takes a string that represents a mathematical expression tokenizes it
      */
     var tokens = Array<String>()
-    var currentToken: String
+    var currentToken = ""
+    var inBracket = false
     
     for char in expression {
-        for op in Operator.allCases {
-            if char == op.rawValue {
-                
-            }
+        if char == SpecialCharacters.leftBracket.rawValue {
+            currentToken += String(char)
+            inBracket = true
         }
+        else if char == SpecialCharacters.rightBracket.rawValue {
+            currentToken += String(char)
+            inBracket = false
+            tokens.append(currentToken)
+            currentToken = ""
+        }
+        
+        // check if its an operator
+        // check if its a number
+        
     }
+    
+    return tokens
 }
 
-func parse(expression: [String]) {
+func parse(expression: String) {
+    // tokenize expression
+    // whenever a parenthesis is found, recursion is used to solve
+    // otherwise:
     // first pass to look for multiplications and divisions
     // second pass to look for additions and subtractions
-    // whenever a parenthesis is found, recursion is used to solve
+    
+    // base case: only two numbers
 }
