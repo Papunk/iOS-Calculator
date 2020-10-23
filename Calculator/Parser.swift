@@ -15,3 +15,7 @@ let sub = { (a: Double, b: Double) -> Double in a - b}
 func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Double {
     return f(a, b)
 }
+
+func parseMath(_ expression: String) {
+    
+}
