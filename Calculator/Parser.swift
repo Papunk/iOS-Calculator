@@ -60,6 +60,13 @@ func tokenize(expression: String) -> [String] {
     var tokens = Array<String>()
     var currentToken = ""
     var inBracket = false
+    var bracketStack = 0
+    
+    var i = 0
+    while i < expression.count {
+        //TODO learn string indeces
+    }
+    
     
     for char in expression {
         if char == SpecialCharacters.leftBracket.rawValue {
