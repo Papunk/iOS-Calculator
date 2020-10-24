@@ -25,6 +25,14 @@ enum Number: Int, CaseIterable {
     case seven
     case eight
     case nine
+    
+    static func rawValues() -> [Character] {
+        var values = Array<Character>()
+        for val in Number.allCases {
+            values.append(Character(UnicodeScalar(val.rawValue)!)) // this cast could be problematic
+        }
+        return values
+    }
 }
 
 enum SpecialCharacters: Character, CaseIterable {
@@ -64,9 +72,11 @@ func tokenize(expression: String) -> [String] {
             tokens.append(currentToken)
             currentToken = ""
         }
+        else if Number.rawValues().contains(char) {
+            
+        }
         
         // check if its an operator
-        // check if its a number
     }
     
     return tokens
