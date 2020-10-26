@@ -99,7 +99,6 @@ func parse(expression: String) -> Double {
     // otherwise:
     // first pass to look for multiplications and divisions
     // second pass to look for additions and subtractions
-    
     // base case: only two numbers
     return 0
 }
