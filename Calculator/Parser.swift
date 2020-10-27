@@ -33,6 +33,10 @@ enum Number: Int, CaseIterable {
         }
         return values
     }
+    
+    static func isNumber() -> Bool {
+        return true
+    }
 }
 
 enum SpecialCharacters: Character, CaseIterable {
@@ -63,38 +67,44 @@ func tokenize(expression: String) -> [String] {
     var bracketStack = 0
     
     // work here
-    var i = 0
-    while i < expression.count {
-        let char = expression[expression.index(expression.startIndex, offsetBy: i)]
-        
-        if char == SpecialCharacters.leftBracket.rawValue {
-            currentToken += String(char)
-            inBracket = true
-            while true {
-                i += 1
-                currentToken += String(char)
-            }
-        }
-        i += 1
-    }
+//    var i = 0
+//    while i < expression.count {
+//        let char = expression[expression.index(expression.startIndex, offsetBy: i)]
+//
+//        if char == SpecialCharacters.leftBracket.rawValue {
+//            currentToken += String(char)
+//            inBracket = true
+//            while true {
+//                i += 1
+//                currentToken += String(char)
+//            }
+//        }
+//        i += 1
+//    }
     
     // deprecated:
     for char in expression {
         if char == SpecialCharacters.leftBracket.rawValue {
             currentToken += String(char)
-            inBracket = true
+            if bracketStack == 0 { // opening new scope
+                inBracket = true
+            }
+            bracketStack += 1
         }
         else if char == SpecialCharacters.rightBracket.rawValue {
             currentToken += String(char)
-            inBracket = false
-            tokens.append(currentToken)
-            currentToken = ""
+            bracketStack -= 1
+            if bracketStack == 0 { // closing the scope
+                inBracket = false
+                tokens.append(currentToken)
+                currentToken = ""
+            }
         }
         else if Number.rawValues().contains(char) {
-            
+            currentToken += String(char)
         }
+        print(String(bracketStack) + " " + String(char))
         
-        // check if its an operator
     }
     
     return tokens
