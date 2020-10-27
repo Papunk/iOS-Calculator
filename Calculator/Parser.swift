@@ -62,12 +62,18 @@ func tokenize(expression: String) -> [String] {
     var inBracket = false
     var bracketStack = 0
     
+    // work here
     var i = 0
     while i < expression.count {
-        //TODO learn string indeces
+        let char = expression[expression.index(expression.startIndex, offsetBy: i)]
+        
+        if char == SpecialCharacters.leftBracket.rawValue {
+            currentToken += String(char)
+            inBracket = true
+        }
     }
     
-    
+    // deprecated:
     for char in expression {
         if char == SpecialCharacters.leftBracket.rawValue {
             currentToken += String(char)
