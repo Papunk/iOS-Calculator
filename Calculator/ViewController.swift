@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         lightColor = UIColor(red: comp, green: comp, blue: comp, alpha: 1)
         display(text: placeholderText, color: lightColor)
         
-        print(tokenize(expression: "((3(35)))(5)5(())"))
+        print("\n", tokenize(expression: "((3+2×(35—2)))+(5÷1)×5—(3—(4+1))"))
         
         
         for op in MathToken.Operator.allCases {

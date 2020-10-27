@@ -14,6 +14,8 @@ let sub = { (a: Double, b: Double) -> Double in a - b}
 
 let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
+
+
 enum Number: Int, CaseIterable {
     case zero = 0
     case one
@@ -34,22 +36,36 @@ enum Number: Int, CaseIterable {
         return values
     }
     
-    static func isNumber() -> Bool {
-        return true
+    static func isMember(num: String) -> Bool {
+        for val in self.allCases {
+            if num == String(val.rawValue) {
+                return true
+            }
+        }
+        return false
     }
 }
 
-enum SpecialCharacters: Character, CaseIterable {
+enum SpecialCharacters: String, CaseIterable {
     case leftBracket = "("
     case rightBracket = ")"
     case dot = "."
 }
 
-enum Operator: Character, CaseIterable {
+enum Operator: String, CaseIterable {
     case mult = "×"
     case div = "÷"
     case add = "+"
     case sub = "—"
+    
+    static func isMember(num: String) -> Bool {
+        for val in self.allCases {
+            if num == String(val.rawValue) {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Double {
@@ -82,28 +98,43 @@ func tokenize(expression: String) -> [String] {
 //        i += 1
 //    }
     
+    func nextToken() {
+        tokens.append(currentToken)
+        currentToken = ""
+    }
+    
     // deprecated:
     for char in expression {
-        if char == SpecialCharacters.leftBracket.rawValue {
-            currentToken += String(char)
+        let elem = String(char)
+        
+        if elem == SpecialCharacters.leftBracket.rawValue {
+            currentToken += elem
             if bracketStack == 0 { // opening new scope
                 inBracket = true
             }
             bracketStack += 1
         }
-        else if char == SpecialCharacters.rightBracket.rawValue {
-            currentToken += String(char)
+        else if elem == SpecialCharacters.rightBracket.rawValue {
+            currentToken += elem
             bracketStack -= 1
             if bracketStack == 0 { // closing the scope
                 inBracket = false
-                tokens.append(currentToken)
-                currentToken = ""
+                nextToken()
             }
         }
-        else if Number.rawValues().contains(char) {
-            currentToken += String(char)
+        else if Number.isMember(num: elem) {
+            currentToken += elem
+            if !inBracket {
+                nextToken()
+            }
         }
-        print(String(bracketStack) + " " + String(char))
+        else if Operator.isMember(num: elem) {
+            currentToken += elem
+            if !inBracket {
+                nextToken()
+            }
+        }
+//        print(String(bracketStack) + " " + String(char))
         
     }
     
