@@ -70,7 +70,12 @@ func tokenize(expression: String) -> [String] {
         if char == SpecialCharacters.leftBracket.rawValue {
             currentToken += String(char)
             inBracket = true
+            while true {
+                i += 1
+                currentToken += String(char)
+            }
         }
+        i += 1
     }
     
     // deprecated:
