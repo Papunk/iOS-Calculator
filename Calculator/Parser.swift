@@ -75,35 +75,18 @@ func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Dou
 func tokenize(expression: String) -> [String] {
     /**
      #Desc:
-     This function takes a string that represents a mathematical expression tokenizes it
+     This function takes a string that represents a mathematical expression tokenizes it. It assumes correct notation and has no way to verify if the statement is valid.
      */
-    var tokens = Array<String>()
+    var tokens = [String]()
     var currentToken = ""
     var inBracket = false
     var bracketStack = 0
-    
-    // work here
-//    var i = 0
-//    while i < expression.count {
-//        let char = expression[expression.index(expression.startIndex, offsetBy: i)]
-//
-//        if char == SpecialCharacters.leftBracket.rawValue {
-//            currentToken += String(char)
-//            inBracket = true
-//            while true {
-//                i += 1
-//                currentToken += String(char)
-//            }
-//        }
-//        i += 1
-//    }
-    
-    func nextToken() {
+ 
+    func saveCurrentToken() {
         tokens.append(currentToken)
         currentToken = ""
     }
     
-    // deprecated:
     for char in expression {
         let elem = String(char)
         
@@ -119,21 +102,16 @@ func tokenize(expression: String) -> [String] {
             bracketStack -= 1
             if bracketStack == 0 { // closing the scope
                 inBracket = false
-                nextToken()
+                saveCurrentToken()
             }
         }
-        else if Number.isMember(num: elem) {
+        else if Number.isMember(num: elem) || Operator.isMember(num: elem) {
             currentToken += elem
             if !inBracket {
-                nextToken()
+                saveCurrentToken()
             }
         }
-        else if Operator.isMember(num: elem) {
-            currentToken += elem
-            if !inBracket {
-                nextToken()
-            }
-        }
+        
 //        print(String(bracketStack) + " " + String(char))
         
     }

@@ -29,7 +29,6 @@ class ViewController: UIViewController {
         
         print("\n", tokenize(expression: "((3+2×(35—2)))+(5÷1)×5—(3—(4+1))"))
         
-        
         for op in MathToken.Operator.allCases {
             operatorElems.append(op.rawValue)
         }
