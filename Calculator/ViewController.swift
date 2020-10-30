@@ -27,11 +27,9 @@ class ViewController: UIViewController {
         lightColor = UIColor(red: comp, green: comp, blue: comp, alpha: 1)
         display(text: placeholderText, color: lightColor)
         
+        // Testing parsing:
         print("\n", tokenize(expression: "((3+2×(35—2)))+(5÷1)×5—(3—(4+1))"))
-        
-        for op in MathToken.Operator.allCases {
-            operatorElems.append(op.rawValue)
-        }
+      
     }
     
     
@@ -39,8 +37,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputNumber(_ sender: UIButton) {
-        if String(outputScreen.text!.last!) == MathToken.special.rightBracket {
-            display(text: MathToken.Operator.mult.rawValue, color: normalColor)
+        if String(outputScreen.text!.last!) == SpecialCharacters.rightBracket.rawValue {
+            display(text: Operator.mult.rawValue, color: normalColor)
         }
         display(text: sender.currentTitle!, color: normalColor)
     }
