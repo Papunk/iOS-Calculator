@@ -45,10 +45,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputLeftBracket(_ sender: UIButton) {
-        if checkLast(of: outputScreen.text!, MathToken.special.dot) {
+        if checkLast(of: outputScreen.text!, SpecialCharacters.dot.rawValue) {
             bracketStack += 1
             if MathToken.numbers.contains(String(outputScreen.text!.last!)) || String(outputScreen.text!.last!) == MathToken.special.rightBracket {
-                display(text: MathToken.Operator.mult.rawValue, color: normalColor)
+                display(text: Operator.mult.rawValue, color: normalColor)
             }
             display(text: sender.currentTitle!, color: normalColor)
         }
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputRightBracket(_ sender: UIButton) {
-        if checkLast(of: outputScreen.text!, operatorElems + [MathToken.special.leftBracket, MathToken.special.dot]) {
+        if checkLast(of: outputScreen.text!, operatorElems + [SpecialCharacters.leftBracket.rawValue, SpecialCharacters.dot.rawValue]) {
             if bracketStack > 0 {
                 bracketStack -= 1
                 display(text: sender.currentTitle!, color: normalColor)
@@ -145,6 +145,7 @@ class ViewController: UIViewController {
     
     
     func checkLast(of word: String, _ elems: String...) -> Bool {
+        // TODO: this function and its overloaded twin need serious documentation!
         return checkLast(of: word, elems)
     }
     
