@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     @IBAction func inputLeftBracket(_ sender: UIButton) {
         if checkLast(of: outputScreen.text!, SpecialCharacters.dot.rawValue) {
             bracketStack += 1
-            if MathToken.numbers.contains(String(outputScreen.text!.last!)) || String(outputScreen.text!.last!) == MathToken.special.rightBracket {
+            if Number.rawValues().contains(outputScreen.text!.last!) || String(outputScreen.text!.last!) == SpecialCharacters.rightBracket.rawValue {
                 display(text: Operator.mult.rawValue, color: normalColor)
             }
             display(text: sender.currentTitle!, color: normalColor)
@@ -67,14 +67,14 @@ class ViewController: UIViewController {
     
     @IBAction func inputDot(_ sender: UIButton) {
         // TODO: disallow things like 23.4215.2451
-        if checkLast(of: outputScreen.text!, operatorElems + MathToken.specialElems) && !displayIsEmpty() {
+        if checkLast(of: outputScreen.text!, operatorElems + SpecialCharacters.rawValues()) && !displayIsEmpty() {
             display(text: sender.currentTitle!, color: normalColor)
         }
     }
     
     
     @IBAction func inputOperator(_ sender: UIButton) {
-        if checkLast(of: outputScreen.text!, operatorElems + [MathToken.special.leftBracket, MathToken.special.dot]) && !displayIsEmpty() {
+        if checkLast(of: outputScreen.text!, operatorElems + [SpecialCharacters.leftBracket.rawValue, SpecialCharacters.dot.rawValue]) && !displayIsEmpty() {
             display(text: sender.currentTitle!, color: normalColor)
         }
     }
