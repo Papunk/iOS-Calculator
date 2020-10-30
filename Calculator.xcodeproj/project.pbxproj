@@ -13,7 +13,6 @@
 		EBB4DB962528D3F60066D7DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBB4DB952528D3F60066D7DE /* Assets.xcassets */; };
 		EBB4DB992528D3F60066D7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBB4DB972528D3F60066D7DE /* LaunchScreen.storyboard */; };
 		EBB4DBA32528D40B0066D7DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBB4DBA12528D40B0066D7DE /* Main.storyboard */; };
-		EBB4DBA72528D4710066D7DE /* MathToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB4DBA62528D4710066D7DE /* MathToken.swift */; };
 		EBBE82B72542700C0021FD88 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE82B62542700C0021FD88 /* Parser.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,6 @@
 		EBB4DB982528D3F60066D7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBB4DB9A2528D3F60066D7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBB4DBA22528D40B0066D7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../../../../.Trash/iOS-Calculator/Calculator/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
-		EBB4DBA62528D4710066D7DE /* MathToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MathToken.swift; path = "../../../../../.Trash/iOS-Calculator/Calculator/MathToken.swift"; sourceTree = "<group>"; };
 		EBBE82B62542700C0021FD88 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,7 +62,6 @@
 				EBB4DB8E2528D3F60066D7DE /* SceneDelegate.swift */,
 				EBBE82B62542700C0021FD88 /* Parser.swift */,
 				EBB4DB902528D3F60066D7DE /* ViewController.swift */,
-				EBB4DBA62528D4710066D7DE /* MathToken.swift */,
 				EBB4DBA12528D40B0066D7DE /* Main.storyboard */,
 				EBB4DB952528D3F60066D7DE /* Assets.xcassets */,
 				EBB4DB972528D3F60066D7DE /* LaunchScreen.storyboard */,
@@ -144,7 +141,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB4DB912528D3F60066D7DE /* ViewController.swift in Sources */,
-				EBB4DBA72528D4710066D7DE /* MathToken.swift in Sources */,
 				EBBE82B72542700C0021FD88 /* Parser.swift in Sources */,
 				EBB4DB8D2528D3F60066D7DE /* AppDelegate.swift in Sources */,
 				EBB4DB8F2528D3F60066D7DE /* SceneDelegate.swift in Sources */,
