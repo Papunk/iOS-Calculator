@@ -7,16 +7,6 @@
 
 import Foundation
 
-let mult = { (a: Double, b: Double) -> Double in a * b}
-let div = { (a: Double, b: Double) -> Double in a / b}
-let add = { (a: Double, b: Double) -> Double in a + b}
-let sub = { (a: Double, b: Double) -> Double in a - b}
-
-func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Double {
-    return f(a, b)
-}
-
-
 
 enum Number: Int, CaseIterable {
     case zero = 0
@@ -48,12 +38,12 @@ enum Number: Int, CaseIterable {
     }
     
     static func isMember(_ num: Character) -> Bool {
-        return isMember(num: String(num))
+        return isMember(String(num))
     }
     
     static func isValidDouble(_ str: String) -> Bool {
         for char in str {
-            if !Number.isMember(num: char) && String(char) != SpecialCharacters.dot.rawValue {
+            if !Number.isMember(char) && String(char) != SpecialCharacters.dot.rawValue {
                 return false
             }
         }
@@ -82,9 +72,9 @@ enum Operator: String, CaseIterable {
     case add = "+"
     case sub = "—"
     
-    static func isMember(num: String) -> Bool {
+    static func isMember(_ op: String) -> Bool {
         for val in self.allCases {
-            if num == String(val.rawValue) {
+            if op == String(val.rawValue) {
                 return true
             }
         }
@@ -127,7 +117,7 @@ func tokenize(_ exp: String) -> [String] {
                 saveCurrentToken()
             }
         }
-        else if Number.isMember(num: elem) || Operator.isMember(num: elem) {
+        else if Number.isMember(elem) || Operator.isMember(elem) {
             currentToken += elem
             if !inBracket {
                 saveCurrentToken()
@@ -156,7 +146,18 @@ func parse(_ exp: String) -> Double {
     var result: Double = 0
     
     for token in tokenize(exp) {
-        
+        if token.starts(with: SpecialCharacters.leftBracket.rawValue) {
+            
+        }
     }
     return 0
+}
+
+let mult = { (a: Double, b: Double) -> Double in a * b}
+let div = { (a: Double, b: Double) -> Double in a / b}
+let add = { (a: Double, b: Double) -> Double in a + b}
+let sub = { (a: Double, b: Double) -> Double in a - b}
+
+func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Double {
+    return f(a, b)
 }
