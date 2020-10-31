@@ -38,7 +38,7 @@ enum Number: Int, CaseIterable {
         return values
     }
     
-    static func isMember(num: String) -> Bool {
+    static func isMember(_ num: String) -> Bool {
         for val in self.allCases {
             if num == String(val.rawValue) {
                 return true
@@ -47,8 +47,17 @@ enum Number: Int, CaseIterable {
         return false
     }
     
-    static func isMember(num: Character) -> Bool {
+    static func isMember(_ num: Character) -> Bool {
         return isMember(num: String(num))
+    }
+    
+    static func isValidDouble(_ str: String) -> Bool {
+        for char in str {
+            if !Number.isMember(num: char) && String(char) != SpecialCharacters.dot.rawValue {
+                return false
+            }
+        }
+        return true
     }
     
 }
@@ -84,14 +93,6 @@ enum Operator: String, CaseIterable {
 }
 
 
-func isValidNumber(str: String) -> Bool {
-    for char in str {
-        if Number.isMember(num: char) || String(char) == SpecialCharacters.dot.rawValue {
-            return true
-        }
-    }
-    return false
-}
 
 func tokenize(_ exp: String) -> [String] {
     /**
@@ -151,9 +152,11 @@ func parse(_ exp: String) -> Double {
     // first pass to look for multiplications and divisions
     // second pass to look for additions and subtractions
     // base case: only two numbers
-    if Number.isMember(num: exp) {
+    
+    var result: Double = 0
+    
+    for token in tokenize(exp) {
         
     }
-    var tokenList = tokenize(exp)
     return 0
 }
