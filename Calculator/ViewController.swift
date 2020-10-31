@@ -100,27 +100,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func getResult(_ sender: UIButton) {
-        /**
-         # Three layered approach:
-         - parenthesis
-         - multiplication and division from left to right
-         - addition and subtraction from left to right
-         */
-        if outputScreen.text != placeholderText {
-            outputScreen.text = String(calculate(exp: outputScreen.text!))
-
-        }
+     
     }
-    
-    func calculate(exp: String) -> Int {
-        // parenthesis
-        var nextExp: String
-        for i in 0 ..< exp.count {
-            // TODO learn about strings in swift (maybe do some classic parsing practice)
-        }
-        return 0
-    }
-    
     
     
     // Helper functions //
