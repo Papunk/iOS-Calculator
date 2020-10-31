@@ -12,6 +12,10 @@ let div = { (a: Double, b: Double) -> Double in a / b}
 let add = { (a: Double, b: Double) -> Double in a + b}
 let sub = { (a: Double, b: Double) -> Double in a - b}
 
+func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Double {
+    return f(a, b)
+}
+
 
 
 enum Number: Int, CaseIterable {
@@ -42,6 +46,11 @@ enum Number: Int, CaseIterable {
         }
         return false
     }
+    
+    static func isMember(num: Character) -> Bool {
+        return isMember(num: String(num))
+    }
+    
 }
 
 enum SpecialCharacters: String, CaseIterable {
@@ -74,11 +83,17 @@ enum Operator: String, CaseIterable {
     }
 }
 
-func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Double {
-    return f(a, b)
+
+func isValidNumber(str: String) -> Bool {
+    for char in str {
+        if Number.isMember(num: char) || String(char) == SpecialCharacters.dot.rawValue {
+            return true
+        }
+    }
+    return false
 }
 
-func tokenize(expression: String) -> [String] {
+func tokenize(_ exp: String) -> [String] {
     /**
      #Desc:
      This function takes a string that represents a mathematical expression tokenizes it. It assumes correct notation and has no way to verify if the statement is valid.
@@ -93,7 +108,7 @@ func tokenize(expression: String) -> [String] {
         currentToken = ""
     }
     
-    for char in expression {
+    for char in exp {
         let elem = String(char)
         
         if elem == SpecialCharacters.leftBracket.rawValue {
@@ -125,7 +140,7 @@ func tokenize(expression: String) -> [String] {
     return tokens
 }
 
-func parse(expression: String) -> Double {
+func parse(_ exp: String) -> Double {
     /**
      #Desc
      parser a math expression and returns the result
@@ -136,5 +151,9 @@ func parse(expression: String) -> Double {
     // first pass to look for multiplications and divisions
     // second pass to look for additions and subtractions
     // base case: only two numbers
+    if Number.isMember(num: exp) {
+        
+    }
+    var tokenList = tokenize(exp)
     return 0
 }
