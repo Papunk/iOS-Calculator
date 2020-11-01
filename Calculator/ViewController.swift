@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         display(text: placeholderText, color: lightColor)
         
         // Testing parsing:
-        print("\n", tokenize(expression: "((3+2×(35—2)))+(5÷1)×5—(3—(4+1))"))
+        print("\n", tokenize("((3+2×(35—2)))+(5÷1)×5—(3—(4+1))"))
       
     }
     
