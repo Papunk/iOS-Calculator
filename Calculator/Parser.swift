@@ -143,14 +143,28 @@ func parse(_ exp: String) -> Double {
     // second pass to look for additions and subtractions
     // base case: only two numbers
     
+    var tokens = tokenize(exp)
     var result: Double = 0
     
-    for token in tokenize(exp) {
-        if token.starts(with: SpecialCharacters.leftBracket.rawValue) {
-            
+    // first pass
+    for i in 0...tokens.count {
+        // TODO decide if this pass needs to be split into two
+        if tokens[i].starts(with: SpecialCharacters.leftBracket.rawValue) {
+            // tokenize further
+        }
+        else if tokens[i] == Operator.mult.rawValue || tokens[i] == Operator.div.rawValue {
+            // apply operation
         }
     }
-    return 0
+    
+    // second pass
+    for i in 0...tokens.count {
+        if tokens[i] == Operator.add.rawValue || tokens[i] == Operator.sub.rawValue {
+            // apply operation
+        }
+    }
+    
+    return result
 }
 
 let mult = { (a: Double, b: Double) -> Double in a * b}
