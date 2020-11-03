@@ -84,7 +84,7 @@ enum Operator: String, CaseIterable {
 
 
 
-func tokenize(_ exp: String) -> [String] {
+func tokenize(_ expression: String) -> [String] {
     /**
      #Desc:
      This function takes a string that represents a mathematical expression tokenizes it. It assumes correct notation and has no way to verify if the statement is valid.
@@ -99,7 +99,10 @@ func tokenize(_ exp: String) -> [String] {
         currentToken = ""
     }
     
-    for char in exp {
+    
+    // TODO: check for a case like: (3-2*(2+1)-1)
+    
+    for char in expression {
         let elem = String(char)
         
         if elem == SpecialCharacters.leftBracket.rawValue {
