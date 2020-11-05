@@ -7,4 +7,4 @@ The purpose of this project is to learn how to use storyboards and Swift to deve
   - Parenthesis support
   - Input checker
 - Implement iOS features like notifications, shortcuts, siri integration and widgets
-- Multiple app icons
+- Editable app icons
