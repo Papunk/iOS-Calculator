@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var lightColor = UIColor(), normalColor: UIColor = .label
     
     
-//    let operators = (mult: "×", div: "÷", add: "+", sub: "-")
+//    let operators = (mult: "×", div: "÷", add: "+", sub: "–")
     
     var operatorElems: [String] = []
     
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         display(text: placeholderText, color: lightColor)
         
         // Testing parsing:
-        print("\n", tokenize("((3+2×(35-2)))+(5÷1)×5-(3-(4+1))"))
+        print("\n", tokenize("((3+2×(35–2)))+(5÷1)×5–(3–(4+1))"))
       
     }
     
