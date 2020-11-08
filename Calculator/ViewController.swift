@@ -77,7 +77,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputOperator(_ sender: UIButton) {
-        if !last(of: outputScreen.text!, operatorElems + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) && !displayIsEmpty() {
+        if !(last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) || displayIsEmpty()) {
             display(text: sender.currentTitle!, color: normalColor)
         }
     }
