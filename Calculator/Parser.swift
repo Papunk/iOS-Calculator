@@ -53,8 +53,8 @@ enum Number: Int, CaseIterable {
 }
 
 enum SpecialCharacters: String, CaseIterable {
-    case leftBracket = "("
-    case rightBracket = ")"
+    case lBracket = "("
+    case rBracket = ")"
     case dot = "."
     
     static func rawValues() -> [String] {
@@ -105,14 +105,14 @@ func tokenize(_ expression: String) -> [String] {
     for char in expression {
         let elem = String(char)
         
-        if elem == SpecialCharacters.leftBracket.rawValue {
+        if elem == SpecialCharacters.lBracket.rawValue {
             currentToken += elem
             if bracketStack == 0 { // opening new scope
                 inBracket = true
             }
             bracketStack += 1
         }
-        else if elem == SpecialCharacters.rightBracket.rawValue {
+        else if elem == SpecialCharacters.rBracket.rawValue {
             currentToken += elem
             bracketStack -= 1
             if bracketStack == 0 { // closing the scope
@@ -152,7 +152,7 @@ func parse(_ exp: String) -> Double {
     // first pass
     for i in 0...tokens.count {
         // TODO decide if this pass needs to be split into two
-        if tokens[i].starts(with: SpecialCharacters.leftBracket.rawValue) {
+        if tokens[i].starts(with: SpecialCharacters.lBracket.rawValue) {
             // tokenize further
         }
         else if tokens[i] == Operator.mult.rawValue || tokens[i] == Operator.div.rawValue {

@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputNumber(_ sender: UIButton) {
-        if String(outputScreen.text!.last!) == SpecialCharacters.rightBracket.rawValue {
+        if String(outputScreen.text!.last!) == SpecialCharacters.rBracket.rawValue {
             display(text: Operator.mult.rawValue, color: normalColor)
         }
         display(text: sender.currentTitle!, color: normalColor)
@@ -45,9 +45,11 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputLeftBracket(_ sender: UIButton) {
-        if checkLast(of: outputScreen.text!, SpecialCharacters.dot.rawValue) {
+        // left brackets won't be placed after a dot
+        if outputScreen.text! == SpecialCharacters.dot.rawValue {
             bracketStack += 1
-            if Number.rawValues().contains(outputScreen.text!.last!) || String(outputScreen.text!.last!) == SpecialCharacters.rightBracket.rawValue {
+            // implicit multiplication when placed after a number or right bracket
+            if Number.isMember(outputScreen.text!.last!) || String(outputScreen.text!.last!) == SpecialCharacters.rBracket.rawValue {
                 display(text: Operator.mult.rawValue, color: normalColor)
             }
             display(text: sender.currentTitle!, color: normalColor)
@@ -56,7 +58,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputRightBracket(_ sender: UIButton) {
-        if checkLast(of: outputScreen.text!, operatorElems + [SpecialCharacters.leftBracket.rawValue, SpecialCharacters.dot.rawValue]) {
+        
+        if checkLast(of: outputScreen.text!, operatorElems + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) {
             if bracketStack > 0 {
                 bracketStack -= 1
                 display(text: sender.currentTitle!, color: normalColor)
@@ -74,7 +77,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputOperator(_ sender: UIButton) {
-        if checkLast(of: outputScreen.text!, operatorElems + [SpecialCharacters.leftBracket.rawValue, SpecialCharacters.dot.rawValue]) && !displayIsEmpty() {
+        if checkLast(of: outputScreen.text!, operatorElems + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) && !displayIsEmpty() {
             display(text: sender.currentTitle!, color: normalColor)
         }
     }
@@ -124,21 +127,19 @@ class ViewController: UIViewController {
         //this func will make sure that text doesnt slide off the end of the screen
     }
     
-    
-    func checkLast(of word: String, _ elems: String...) -> Bool {
-        // TODO: this function and its overloaded twin need serious documentation!
-        return checkLast(of: word, elems)
-    }
-    
-    
-    func checkLast(of word: String, _ elems: [String]) -> Bool {
+    func last(of word: String, equals elems: [String]) -> Bool {
+        // this method returns true if the last character of a string matches with any of the elements given
         let last = word.last!
         for elem in elems {
             if last == Character(elem) {
-                return false // match found
+                return true // match found
             }
         }
-        return true
+        return false
+    }
+    
+    func last(of word: String, _ elems: String...) -> Bool {
+        return last(of: word, equals: elems)
     }
     
     
