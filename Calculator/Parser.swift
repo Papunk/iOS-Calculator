@@ -57,6 +57,10 @@ enum SpecialCharacters: String, CaseIterable {
     case rBracket = ")"
     case dot = "."
     
+    
+    
+    // TODO: TURN rawValues() INTO AN INDEPENDENT FUNCTION
+    
     static func rawValues() -> [String] {
         var values = Array<String>()
         for val in SpecialCharacters.allCases {
@@ -79,6 +83,14 @@ enum Operator: String, CaseIterable {
             }
         }
         return false
+    }
+    
+    static func rawValues() -> [String] {
+        var values = Array<String>()
+        for val in Operator.allCases {
+            values.append(val.rawValue)
+        }
+        return values
     }
 }
 

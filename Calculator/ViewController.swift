@@ -46,10 +46,10 @@ class ViewController: UIViewController {
     
     @IBAction func inputLeftBracket(_ sender: UIButton) {
         // left brackets won't be placed after a dot
-        if outputScreen.text! == SpecialCharacters.dot.rawValue {
+        if !last(of: outputScreen.text!, isMemberOf: SpecialCharacters.dot.rawValue) {
             bracketStack += 1
             // implicit multiplication when placed after a number or right bracket
-            if Number.isMember(outputScreen.text!.last!) || String(outputScreen.text!.last!) == SpecialCharacters.rBracket.rawValue {
+            if Number.isMember(outputScreen.text!.last!) || last(of: outputScreen.text!, isMemberOf: SpecialCharacters.rBracket.rawValue) {
                 display(text: Operator.mult.rawValue, color: normalColor)
             }
             display(text: sender.currentTitle!, color: normalColor)
@@ -58,8 +58,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputRightBracket(_ sender: UIButton) {
-        
-        if checkLast(of: outputScreen.text!, operatorElems + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) {
+        // right brackets won't be placed after an operator, a left bracket, or a dot
+        if !last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) {
             if bracketStack > 0 {
                 bracketStack -= 1
                 display(text: sender.currentTitle!, color: normalColor)
@@ -70,14 +70,14 @@ class ViewController: UIViewController {
     
     @IBAction func inputDot(_ sender: UIButton) {
         // TODO: disallow things like 23.4215.2451
-        if checkLast(of: outputScreen.text!, operatorElems + SpecialCharacters.rawValues()) && !displayIsEmpty() {
+        if !(last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + SpecialCharacters.rawValues()) || displayIsEmpty()) {
             display(text: sender.currentTitle!, color: normalColor)
         }
     }
     
     
     @IBAction func inputOperator(_ sender: UIButton) {
-        if checkLast(of: outputScreen.text!, operatorElems + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) && !displayIsEmpty() {
+        if !last(of: outputScreen.text!, operatorElems + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) && !displayIsEmpty() {
             display(text: sender.currentTitle!, color: normalColor)
         }
     }
@@ -127,8 +127,8 @@ class ViewController: UIViewController {
         //this func will make sure that text doesnt slide off the end of the screen
     }
     
-    func last(of word: String, equals elems: [String]) -> Bool {
-        // this method returns true if the last character of a string matches with any of the elements given
+    func last(of word: String, isMemberOf elems: [String]) -> Bool {
+        // this method returns true if the last character of a string matches with any of the elements given and false otherwise
         let last = word.last!
         for elem in elems {
             if last == Character(elem) {
@@ -138,8 +138,8 @@ class ViewController: UIViewController {
         return false
     }
     
-    func last(of word: String, _ elems: String...) -> Bool {
-        return last(of: word, equals: elems)
+    func last(of word: String, isMemberOf elems: String...) -> Bool {
+        return last(of: word, isMemberOf: elems)
     }
     
     
