@@ -9,4 +9,4 @@ The purpose of this project is to learn how to use storyboards and Swift to deve
 - Implement iOS features like notifications, shortcuts, siri integration and widgets
 - Editable app icons
 
-![Screenshot](Hello.png)
+![Screenshot](https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Hello.png)
