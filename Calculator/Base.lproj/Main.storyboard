@@ -289,10 +289,16 @@
                                                             <barButtonItem systemItem="flexibleSpace" id="Mdc-Hu-rCJ"/>
                                                             <barButtonItem image="gearshape" catalog="system" id="aV5-Y8-GsA">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
+                                                                <connections>
+                                                                    <action selector="toggleColor:" destination="BYZ-38-t0r" id="i0m-0P-RNp"/>
+                                                                </connections>
                                                             </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="b7R-2w-0We"/>
                                                             <barButtonItem image="paperclip" catalog="system" id="2Uv-8c-oE7">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
+                                                                <connections>
+                                                                    <action selector="copyText:" destination="BYZ-38-t0r" id="kNt-SD-2mw"/>
+                                                                </connections>
                                                             </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="H1B-Wg-mGu"/>
                                                             <barButtonItem image="square.and.arrow.up" catalog="system" id="Uc5-vC-n8g">
@@ -329,7 +335,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="clip" destination="2Uv-8c-oE7" id="sAD-n3-8Kf"/>
+                        <outlet property="div" destination="YbC-p3-fBU" id="78b-HZ-mFZ"/>
+                        <outlet property="eq" destination="YEy-IN-BIm" id="kNn-TD-FDb"/>
+                        <outlet property="gear" destination="aV5-Y8-GsA" id="xHh-yX-NFf"/>
+                        <outlet property="min" destination="zd9-ex-FMg" id="eJe-0N-T6b"/>
+                        <outlet property="mult" destination="kAS-8l-UiF" id="5it-ui-VXQ"/>
                         <outlet property="outputScreen" destination="Q9s-uP-aWB" id="cr6-HO-hez"/>
+                        <outlet property="plus" destination="ypE-xW-qa2" id="iXy-nw-AwR"/>
+                        <outlet property="share" destination="Uc5-vC-n8g" id="Hdc-U7-mqQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -15,6 +15,15 @@ class ViewController: UIViewController {
     var lightColor = UIColor(), normalColor: UIColor = .label
     
     
+    @IBOutlet var mult: UIButton!
+    @IBOutlet var div: UIButton!
+    @IBOutlet var plus: UIButton!
+    @IBOutlet var min: UIButton!
+    @IBOutlet var eq: UIButton!
+    @IBOutlet var gear: UIBarButtonItem!
+    @IBOutlet var clip: UIBarButtonItem!
+    @IBOutlet var share: UIBarButtonItem!
+        
 //    let operators = (mult: "×", div: "÷", add: "+", sub: "–")
     
     var operatorElems: [String] = []
@@ -26,6 +35,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         lightColor = UIColor(red: comp, green: comp, blue: comp, alpha: 1)
         display(text: placeholderText, color: lightColor)
+        
+        let customizeableButtons = [mult, div, plus, min, eq, gear, clip, share]
         
         // Testing parsing:
         print("\n", tokenize("((3+2×(35–2)))+(5÷1)×5–(3–(4+1))"))
@@ -146,5 +157,16 @@ class ViewController: UIViewController {
     func displayIsEmpty() -> Bool {
         return outputScreen.text == placeholderText
     }
+    
+    // TOOLBAR CONTROL
+    
+    @IBAction func toggleColor(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    @IBAction func copyText(_ sender: UIBarButtonItem) {
+        
+    }
+    
 }
 
