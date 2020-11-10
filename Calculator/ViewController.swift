@@ -11,18 +11,27 @@ class ViewController: UIViewController {
     
     @IBOutlet var outputScreen: UILabel!
     var placeholderText = "Hello"
-    let comp: CGFloat = 0.15
-    var lightColor = UIColor(), normalColor: UIColor = .label
+    let comp: CGFloat = 0.15 // TODO document these variables
+    var lightColor = UIColor(), normalColor = UIColor.label
     
+    var colorQueue: Array<UIColor> = [.systemPink, .systemIndigo, .systemGreen, .systemOrange, .systemYellow]
+    
+    func shiftColor() -> UIColor {
+        colorQueue.append(colorQueue.remove(at: 0))
+        return colorQueue.last ?? UIColor.label
+    }
     
     @IBOutlet var mult: UIButton!
     @IBOutlet var div: UIButton!
     @IBOutlet var plus: UIButton!
     @IBOutlet var min: UIButton!
     @IBOutlet var eq: UIButton!
-    @IBOutlet var gear: UIBarButtonItem!
+    @IBOutlet var brush: UIBarButtonItem!
     @IBOutlet var clip: UIBarButtonItem!
     @IBOutlet var share: UIBarButtonItem!
+    
+    var customButtons = Array<UIButton>()
+    var customBarButtons = Array<UIBarButtonItem>()
         
 //    let operators = (mult: "×", div: "÷", add: "+", sub: "–")
     
@@ -36,7 +45,8 @@ class ViewController: UIViewController {
         lightColor = UIColor(red: comp, green: comp, blue: comp, alpha: 1)
         display(text: placeholderText, color: lightColor)
         
-        let customizeableButtons = [mult, div, plus, min, eq, gear, clip, share]
+        customButtons = [mult, div, plus, min, eq]
+        customBarButtons = [brush, clip, share]
         
         // Testing parsing:
         print("\n", tokenize("((3+2×(35–2)))+(5÷1)×5–(3–(4+1))"))
@@ -161,7 +171,13 @@ class ViewController: UIViewController {
     // TOOLBAR CONTROL
     
     @IBAction func toggleColor(_ sender: UIBarButtonItem) {
-        
+        let color = shiftColor()
+        for item in customButtons {
+            item.backgroundColor = color
+        }
+        for item in customBarButtons {
+            item.tintColor = color
+        }
     }
     
     @IBAction func copyText(_ sender: UIBarButtonItem) {

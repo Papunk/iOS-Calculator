@@ -287,7 +287,7 @@
                                                         <rect key="frame" x="0.0" y="670.66666666666663" width="375" height="63.333333333333371"/>
                                                         <items>
                                                             <barButtonItem systemItem="flexibleSpace" id="Mdc-Hu-rCJ"/>
-                                                            <barButtonItem image="gearshape" catalog="system" id="aV5-Y8-GsA">
+                                                            <barButtonItem image="paintbrush.pointed" catalog="system" id="aV5-Y8-GsA">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                                 <connections>
                                                                     <action selector="toggleColor:" destination="BYZ-38-t0r" id="i0m-0P-RNp"/>
@@ -335,10 +335,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="brush" destination="aV5-Y8-GsA" id="xHh-yX-NFf"/>
                         <outlet property="clip" destination="2Uv-8c-oE7" id="sAD-n3-8Kf"/>
                         <outlet property="div" destination="YbC-p3-fBU" id="78b-HZ-mFZ"/>
                         <outlet property="eq" destination="YEy-IN-BIm" id="kNn-TD-FDb"/>
-                        <outlet property="gear" destination="aV5-Y8-GsA" id="xHh-yX-NFf"/>
                         <outlet property="min" destination="zd9-ex-FMg" id="eJe-0N-T6b"/>
                         <outlet property="mult" destination="kAS-8l-UiF" id="5it-ui-VXQ"/>
                         <outlet property="outputScreen" destination="Q9s-uP-aWB" id="cr6-HO-hez"/>
@@ -352,7 +352,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="paintbrush.pointed" catalog="system" width="128" height="116"/>
         <image name="paperclip" catalog="system" width="121" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
