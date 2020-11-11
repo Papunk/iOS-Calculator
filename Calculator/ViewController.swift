@@ -48,6 +48,8 @@ class ViewController: UIViewController {
         customButtons = [mult, div, plus, min, eq]
         customBarButtons = [brush, clip, share]
         
+        shiftColor()
+        
         // Testing parsing:
         print("\n", tokenize("((3+2×(35–2)))+(5÷1)×5–(3–(4+1))"))
       
