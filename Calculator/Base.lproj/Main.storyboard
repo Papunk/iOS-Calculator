@@ -287,7 +287,7 @@
                                                         <rect key="frame" x="0.0" y="670.66666666666663" width="375" height="63.333333333333371"/>
                                                         <items>
                                                             <barButtonItem systemItem="flexibleSpace" id="Mdc-Hu-rCJ"/>
-                                                            <barButtonItem image="paintbrush.pointed" catalog="system" id="aV5-Y8-GsA">
+                                                            <barButtonItem image="paintbrush" catalog="system" id="aV5-Y8-GsA">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                                 <connections>
                                                                     <action selector="toggleColor:" destination="BYZ-38-t0r" id="i0m-0P-RNp"/>
@@ -352,7 +352,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="paintbrush.pointed" catalog="system" width="128" height="116"/>
+        <image name="paintbrush" catalog="system" width="122" height="128"/>
         <image name="paperclip" catalog="system" width="121" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">

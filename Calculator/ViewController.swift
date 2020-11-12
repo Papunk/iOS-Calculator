@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     let comp: CGFloat = 0.15 // TODO document these variables
     var lightColor = UIColor(), normalColor = UIColor.label
     
-    var colorQueue: Array<UIColor> = [.systemPink, .systemIndigo, .systemGreen, .systemOrange, .systemYellow]
+    // systemPink is the default color
+    var colorQueue: Array<UIColor> = [.systemIndigo, .systemGreen, .systemOrange, .systemYellow, .systemPink]
     
     func shiftColor() -> UIColor {
         colorQueue.append(colorQueue.remove(at: 0))
@@ -47,9 +48,7 @@ class ViewController: UIViewController {
         
         customButtons = [mult, div, plus, min, eq]
         customBarButtons = [brush, clip, share]
-        
-        shiftColor()
-        
+                
         // Testing parsing:
         print("\n", tokenize("((3+2×(35–2)))+(5÷1)×5–(3–(4+1))"))
       
