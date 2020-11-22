@@ -49,11 +49,15 @@ class ViewController: UIViewController {
         customButtons = [mult, div, plus, min, eq]
         customBarButtons = [brush, clip, share]
         
+        let s = "((3+2×(35–2.0)))+(5÷1)×5–(3–(4+1))"
         // Testing parsing:
         print()
-        print(tokenize("((3+2×(35–2)))+(5÷1)×5–(3–(4+1))"))
-        print("Right Answer: ((3+2*(35-2)))+(5/1)*5-(3-(4+1)) = 96")
-        print(parse("3×2"))
+        print("Expression:", s)
+        print("RPN:", turnToRPN(tokenize(s)))
+        print("Answer:", parseRPN(turnToRPN(tokenize(s))))
+        print("Expected Answer: 96")
+//        print("Right Answer: ((3+2*(35-2)))+(5/1)*5-(3-(4+1)) = 96")
+//        print(parse("3×2"))
         
         exit(0)
       
