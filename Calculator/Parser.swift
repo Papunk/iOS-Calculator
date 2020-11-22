@@ -74,7 +74,7 @@ enum Operator: String, CaseIterable {
     case mult = "×"
     case div = "÷"
     case add = "+"
-    case sub = "—"
+    case sub = "–"
     
     static func isMember(_ op: String) -> Bool {
         for val in self.allCases {
@@ -92,6 +92,24 @@ enum Operator: String, CaseIterable {
         }
         return values
     }
+}
+
+// Operators:
+let mult = (sign: "×", precedence: 2),
+    div = (sign: "÷", precedence: 2),
+    add = (sign: "+", precedence: 1),
+    sub = (sign: "–", precedence: 1),
+    par = (sign: "(", precedence: 0)
+
+let precedenceList = [mult, div, add, sub, par]
+
+func getPrecedence(_ op: String) -> Int {
+    for type in precedenceList {
+        if type.sign == op {
+            return type.precedence
+        }
+    }
+    return -1
 }
 
 func tokenize(_ exp: String) -> [String] {
@@ -122,23 +140,49 @@ func tokenize(_ exp: String) -> [String] {
     return tokens
 }
 
-func turnToRPN(_ exp: [String]) -> String {
-
-    return ""
+func turnToRPN(_ exp: [String]) -> [String] {
+    var rpnQueue = [String]()
+    var operatorStack = [String]()
+    
+    for token in exp {
+        // Number
+        if Number.isMember(token.first!) {
+            rpnQueue.append(token)
+        }
+        // Opening Bracket
+        else if token == SpecialCharacters.lBracket.rawValue {
+            operatorStack.append(token)
+        }
+        // Closing bracket
+        else if token == SpecialCharacters.rBracket.rawValue {
+            while operatorStack.last != SpecialCharacters.lBracket.rawValue {
+                rpnQueue.append(operatorStack.removeLast())
+            }
+            operatorStack.removeLast()
+        }
+        // Operator
+        else if Operator.isMember(token) {
+            if operatorStack.isEmpty {
+                operatorStack.append(token)
+            } else {
+                let tokenPrecedence = getPrecedence(token)
+                while !operatorStack.isEmpty && tokenPrecedence <= getPrecedence(operatorStack.last!) {
+                    rpnQueue.append(operatorStack.removeLast())
+                }
+                operatorStack.append(token)
+            }
+        }
+    }
+    
+    while (!operatorStack.isEmpty) {
+        rpnQueue.append(operatorStack.removeLast())
+    }
+    
+    
+    return rpnQueue
 }
 
-func parseRPN(_ exp: String) -> Double {
+func parseRPN(_ exp: [String]) -> Double {
     return 0
 }
 
-
-
-
-let mult = { (a: Double, b: Double) -> Double in a * b}
-let div = { (a: Double, b: Double) -> Double in a / b}
-let add = { (a: Double, b: Double) -> Double in a + b}
-let sub = { (a: Double, b: Double) -> Double in a - b}
-
-func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Double {
-    return f(a, b)
-}
