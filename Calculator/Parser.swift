@@ -112,6 +112,10 @@ func getPrecedence(_ op: String) -> Int {
     return -1
 }
 
+func calculate() {
+    
+}
+
 func tokenize(_ exp: String) -> [String] {
     var tokens = [String]()
     var currentToken = ""
@@ -178,11 +182,21 @@ func turnToRPN(_ exp: [String]) -> [String] {
         rpnQueue.append(operatorStack.removeLast())
     }
     
-    
     return rpnQueue
 }
 
 func parseRPN(_ exp: [String]) -> Double {
+    var answerStack = [Double]()
+    
+    for value in exp {
+        if Number.isMember(value) {
+            answerStack.append(Double(value)!)
+        }
+        else if Operator.isMember(value) {
+            
+        }
+    }
+    
     return 0
 }
 
