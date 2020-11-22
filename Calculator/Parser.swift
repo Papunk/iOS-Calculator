@@ -158,22 +158,47 @@ func parse(_ exp: String) -> Double {
     // second pass to look for additions and subtractions
     // base case: only two numbers
     
+    func calculate(a: Double, b: Double, op: Operator) -> Double {
+        switch op {
+        case .mult:
+            return a * b
+        case .div:
+            return a / b
+        case .add:
+            return a + b
+        case .sub:
+            return a - b
+        }
+    }
+    
+    
     var tokens = tokenize(exp)
+    var tokenPlaceholder = Array<String>()
     var result: Double = 0
     
+    if tokens.count == 1 {
+        return Double(tokens[0])!
+    }
+    
     // first pass
-    for i in 0...tokens.count {
-        // TODO decide if this pass needs to be split into two
-        if tokens[i].starts(with: SpecialCharacters.lBracket.rawValue) {
-            // tokenize further
+    for i in 0...tokens.count-1 {
+        print(i)
+        // multiplication
+        if tokens[i] == Operator.mult.rawValue {
+            let a = parse(tokens[i-1])
+            let b = parse(tokens[i+1])
+            tokenPlaceholder.append(String(calculate(a: a, b: b, op: Operator.mult)))
         }
-        else if tokens[i] == Operator.mult.rawValue || tokens[i] == Operator.div.rawValue {
-            // apply operation
+        // division
+        else if tokens[i] == Operator.div.rawValue {
+            let a = parse(tokens[i-1])
+            let b = parse(tokens[i+1])
+            tokenPlaceholder.append(String(calculate(a: a, b: b, op: Operator.div)))
         }
     }
     
     // second pass
-    for i in 0...tokens.count {
+    for i in 0...tokens.count-1 {
         if tokens[i] == Operator.add.rawValue || tokens[i] == Operator.sub.rawValue {
             // apply operation
         }
