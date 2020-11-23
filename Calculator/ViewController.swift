@@ -50,12 +50,7 @@ class ViewController: UIViewController {
         customBarButtons = [brush, clip, share]
         
         // Testing parsing:
-        print()
-        print(tokenize("((3+2×(35–2)))+(5÷1)×5–(3–(4+1))"))
-        print("Right Answer: ((3+2*(35-2)))+(5/1)*5-(3-(4+1)) = 96")
-        print(parse("3×2"))
         
-        exit(0)
       
     }
     
