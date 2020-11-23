@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var placeholderText = "Hello"
     let comp: CGFloat = 0.15 // TODO document these variables
     var lightColor = UIColor(), normalColor = UIColor.label
+    var placesAfterDecimal = 2
     
     // systemPink is the default color
     var colorQueue: Array<UIColor> = [.systemIndigo, .systemGreen, .systemOrange, .systemYellow, .systemPink]
@@ -49,13 +50,6 @@ class ViewController: UIViewController {
         customButtons = [mult, div, plus, min, eq]
         customBarButtons = [brush, clip, share]
         
-//        let s = "2–3"
-//        // Testing parsing:
-//        print()
-//        print("Expression:", s)
-//        print("RPN:", turnToRPN(tokenize(s)))
-//        print("Answer:", parseRPN(turnToRPN(tokenize(s))))
-//        print("Expected Answer: -1")
     }
     
     
@@ -131,7 +125,7 @@ class ViewController: UIViewController {
     @IBAction func getResult(_ sender: UIButton) {
         if outputScreen.text! != placeholderText {
             let tokens = turnToRPN(tokenize(outputScreen.text!))
-            outputScreen.text = String(parseRPN(tokens)) // TODO trim zeroes after decimal point
+            outputScreen.text = trimZeroes(num: parseRPN(tokens))
         }
     }
     
@@ -169,6 +163,44 @@ class ViewController: UIViewController {
     
     func last(of word: String, isMemberOf elems: String...) -> Bool {
         return last(of: word, isMemberOf: elems)
+    }
+    
+    func trimZeroes(num: Double) -> String {
+        var stringNum = String(num)
+        let dotIndex = String(num).firstIndex(of: Character(SpecialCharacters.dot.rawValue))!
+        
+        if stringNum.contains(Character(SpecialCharacters.dot.rawValue)) {
+            for i in stringNum.indices.reversed() {
+                if stringNum[i] == "0" {
+                    stringNum.remove(at: i)
+                }
+                else if stringNum[i] == Character(SpecialCharacters.dot.rawValue) {
+                    return String(stringNum[stringNum.startIndex..<dotIndex])
+                }
+                else {
+                    break
+                }
+            }
+        }
+        return stringNum
+    }
+    
+    func trimPeriodic(num: Double) -> String {
+        let stringNum = String(num)
+        let dotIndex = String(num).firstIndex(of: Character(SpecialCharacters.dot.rawValue))!
+        var firstNum = ""
+        for digit in stringNum[dotIndex..<stringNum.endIndex] {
+            if digit == Character(SpecialCharacters.dot.rawValue) {
+                continue
+            }
+            if firstNum.isEmpty {
+                firstNum = String(digit)
+            }
+            else if String(digit) != firstNum {
+                return stringNum
+            }
+        }
+        return (String(stringNum[stringNum.startIndex...stringNum.index(after: dotIndex)]))
     }
     
     

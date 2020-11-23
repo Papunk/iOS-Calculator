@@ -293,7 +293,7 @@
                                                                 </connections>
                                                             </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="b7R-2w-0We"/>
-                                                            <barButtonItem image="paperclip" catalog="system" id="2Uv-8c-oE7">
+                                                            <barButtonItem image="square.stack.3d.up" catalog="system" id="2Uv-8c-oE7">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                                 <connections>
                                                                     <action selector="copyText:" destination="BYZ-38-t0r" id="kNt-SD-2mw"/>
@@ -352,8 +352,8 @@
     </scenes>
     <resources>
         <image name="paintbrush" catalog="system" width="122" height="128"/>
-        <image name="paperclip" catalog="system" width="121" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="square.stack.3d.up" catalog="system" width="128" height="124"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
