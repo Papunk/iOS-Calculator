@@ -49,9 +49,13 @@ class ViewController: UIViewController {
         customButtons = [mult, div, plus, min, eq]
         customBarButtons = [brush, clip, share]
         
-        // Testing parsing:
-        
-      
+//        let s = "2–3"
+//        // Testing parsing:
+//        print()
+//        print("Expression:", s)
+//        print("RPN:", turnToRPN(tokenize(s)))
+//        print("Answer:", parseRPN(turnToRPN(tokenize(s))))
+//        print("Expected Answer: -1")
     }
     
     
@@ -125,7 +129,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func getResult(_ sender: UIButton) {
-     
+        if outputScreen.text! != placeholderText {
+            let tokens = turnToRPN(tokenize(outputScreen.text!))
+            outputScreen.text = String(parseRPN(tokens)) // TODO trim zeroes after decimal point
+        }
     }
     
     

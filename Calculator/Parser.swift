@@ -74,7 +74,7 @@ enum Operator: String, CaseIterable {
     case mult = "×"
     case div = "÷"
     case add = "+"
-    case sub = "—"
+    case sub = "–"
     
     static func isMember(_ op: String) -> Bool {
         for val in self.allCases {
@@ -94,124 +94,123 @@ enum Operator: String, CaseIterable {
     }
 }
 
+// Operators:
+let mult = (sign: "×", precedence: 2, operation: {(a: Double, b: Double) -> Double in return a * b})
+let div = (sign: "÷", precedence: 2, operation: {(a: Double, b: Double) -> Double in return a / b})
+let add = (sign: "+", precedence: 1, operation: {(a: Double, b: Double) -> Double in return a + b})
+let sub = (sign: "–", precedence: 1, operation: {(a: Double, b: Double) -> Double in return a - b})
+let par = (sign: "(", precedence: 0, operation: /*Placeholder closure*/ {(a: Double, b: Double) -> Double in return 0})
 
+let operatorList = [mult, div, add, sub, par]
 
-func tokenize(_ expression: String) -> [String] {
-    /**
-     #Desc:
-     This function takes a string that represents a mathematical expression tokenizes it. It assumes correct notation and has no way to verify if the statement is valid.
-     */
+func getPrecedence(_ op: String) -> Int {
+    for type in operatorList {
+        if type.sign == op {
+            return type.precedence
+        }
+    }
+    return -1
+}
+
+func calculate(a: Double, b: Double, op: String) -> Double {
+    for type in operatorList {
+        if type.sign == op {
+            return type.operation(a, b)
+        }
+    }
+    return 0
+}
+
+func tokenize(_ exp: String) -> [String] {
     var tokens = [String]()
     var currentToken = ""
-    var inBracket = false
-    var bracketStack = 0
- 
+    
     func saveCurrentToken() {
         tokens.append(currentToken)
         currentToken = ""
     }
     
-    
-    // TODO: check for a case like: (3-2*(2+1)-1)
-    
-    for char in expression {
+    for char in exp {
         let elem = String(char)
-        
-        if elem == SpecialCharacters.lBracket.rawValue {
+        // number
+        if Number.isMember(elem) || elem == SpecialCharacters.dot.rawValue {
             currentToken += elem
-            if bracketStack == 0 { // opening new scope
-                inBracket = true
-            }
-            bracketStack += 1
         }
-        else if elem == SpecialCharacters.rBracket.rawValue {
-            currentToken += elem
-            bracketStack -= 1
-            if bracketStack == 0 { // closing the scope
-                inBracket = false
+        // other
+        else {
+            if !currentToken.isEmpty {
                 saveCurrentToken()
             }
+            currentToken = elem
+            saveCurrentToken()
         }
-        else if Number.isMember(elem) || Operator.isMember(elem) {
-            currentToken += elem
-            if !inBracket {
-                saveCurrentToken()
-            }
-        }
-        
-//        print(String(bracketStack) + " " + String(char))
-        
+    }
+    
+    // Edge case: last element is a number
+    if !currentToken.isEmpty && Number.isMember(currentToken.first!) {
+        saveCurrentToken()
     }
     
     return tokens
 }
 
-func parse(_ exp: String) -> Double {
-    /**
-     #Desc
-     parser a math expression and returns the result
-     */
-    // tokenize expression
-    // whenever a parenthesis is found, recursion is used to solve
-    // otherwise:
-    // first pass to look for multiplications and divisions
-    // second pass to look for additions and subtractions
-    // base case: only two numbers
+func turnToRPN(_ exp: [String]) -> [String] {
+    // Implementation of Shunting-Yard algorithm to turn algebraic expression into reverse Polish notation
+    var rpnQueue = [String]()
+    var operatorStack = [String]()
     
-    func calculate(a: Double, b: Double, op: Operator) -> Double {
-        switch op {
-        case .mult:
-            return a * b
-        case .div:
-            return a / b
-        case .add:
-            return a + b
-        case .sub:
-            return a - b
+    for token in exp {
+        // Number
+        if Number.isMember(token.first!) {
+            rpnQueue.append(token)
+        }
+        // Opening Bracket
+        else if token == SpecialCharacters.lBracket.rawValue {
+            operatorStack.append(token)
+        }
+        // Closing bracket
+        else if token == SpecialCharacters.rBracket.rawValue {
+            while operatorStack.last != SpecialCharacters.lBracket.rawValue {
+                rpnQueue.append(operatorStack.removeLast())
+            }
+            operatorStack.removeLast()
+        }
+        // Operator
+        else if Operator.isMember(token) {
+            if operatorStack.isEmpty {
+                operatorStack.append(token)
+            } else {
+                let tokenPrecedence = getPrecedence(token)
+                while !operatorStack.isEmpty && tokenPrecedence <= getPrecedence(operatorStack.last!) {
+                    rpnQueue.append(operatorStack.removeLast())
+                }
+                operatorStack.append(token)
+            }
         }
     }
     
-    
-    var tokens = tokenize(exp)
-    var tokenPlaceholder = Array<String>()
-    var result: Double = 0
-    
-    if tokens.count == 1 {
-        return Double(tokens[0])!
+    while (!operatorStack.isEmpty) {
+        rpnQueue.append(operatorStack.removeLast())
     }
     
-    // first pass
-    for i in 0...tokens.count-1 {
-        print(i)
-        // multiplication
-        if tokens[i] == Operator.mult.rawValue {
-            let a = parse(tokens[i-1])
-            let b = parse(tokens[i+1])
-            tokenPlaceholder.append(String(calculate(a: a, b: b, op: Operator.mult)))
-        }
-        // division
-        else if tokens[i] == Operator.div.rawValue {
-            let a = parse(tokens[i-1])
-            let b = parse(tokens[i+1])
-            tokenPlaceholder.append(String(calculate(a: a, b: b, op: Operator.div)))
-        }
-    }
-    
-    // second pass
-    for i in 0...tokens.count-1 {
-        if tokens[i] == Operator.add.rawValue || tokens[i] == Operator.sub.rawValue {
-            // apply operation
-        }
-    }
-    
-    return result
+    return rpnQueue
 }
 
-let mult = { (a: Double, b: Double) -> Double in a * b}
-let div = { (a: Double, b: Double) -> Double in a / b}
-let add = { (a: Double, b: Double) -> Double in a + b}
-let sub = { (a: Double, b: Double) -> Double in a - b}
-
-func getResult(_ a: Double, _ b: Double, _ f: (Double, Double) -> Double) -> Double {
-    return f(a, b)
+func parseRPN(_ exp: [String]) -> Double {
+    var answerStack = [Double]()
+    
+    for token in exp {
+        if Number.isMember(token.first!) {
+            answerStack.append(Double(token)!)
+        }
+        else if Operator.isMember(token) {
+            let b = answerStack.popLast()
+            let a = answerStack.popLast()
+            answerStack.append(calculate(a: a!, b: b!, op: token))
+        }
+        print(answerStack)
+    }
+    
+    return answerStack.first!
 }
+
