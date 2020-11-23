@@ -147,7 +147,7 @@ func tokenize(_ exp: String) -> [String] {
     }
     
     // Edge case: last element is a number
-    if Number.isMember(currentToken.first!) {
+    if !currentToken.isEmpty && Number.isMember(currentToken.first!) {
         saveCurrentToken()
     }
     

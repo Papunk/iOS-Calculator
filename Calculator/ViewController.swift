@@ -96,9 +96,7 @@ class ViewController: UIViewController {
     
     @IBAction func inputDot(_ sender: UIButton) {
         // TODO: disallow things like 23.4215.2451
-        if !last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + SpecialCharacters.rawValues()) && !displayIsEmpty() {
-//            print(Operator.rawValues() + SpecialCharacters.rawValues())
-//            print(sender.currentTitle!)
+        if !(last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + SpecialCharacters.rawValues()) || displayIsEmpty()) {
             display(text: sender.currentTitle!, color: normalColor)
         }
     }

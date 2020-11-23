@@ -263,7 +263,6 @@
                                                                                 </state>
                                                                                 <connections>
                                                                                     <action selector="inputDot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kZV-rO-3UE"/>
-                                                                                    <action selector="inputNumber:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1OS-sB-ddO"/>
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEy-IN-BIm">
