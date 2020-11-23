@@ -49,18 +49,13 @@ class ViewController: UIViewController {
         customButtons = [mult, div, plus, min, eq]
         customBarButtons = [brush, clip, share]
         
-        let s = "((3+2×(35–2.0)))+(5÷1)×5–(3–(4+1))"
-        // Testing parsing:
-        print()
-        print("Expression:", s)
-        print("RPN:", turnToRPN(tokenize(s)))
-        print("Answer:", parseRPN(turnToRPN(tokenize(s))))
-        print("Expected Answer: 96")
-//        print("Right Answer: ((3+2*(35-2)))+(5/1)*5-(3-(4+1)) = 96")
-//        print(parse("3×2"))
-        
-        exit(0)
-      
+//        let s = "2–3"
+//        // Testing parsing:
+//        print()
+//        print("Expression:", s)
+//        print("RPN:", turnToRPN(tokenize(s)))
+//        print("Answer:", parseRPN(turnToRPN(tokenize(s))))
+//        print("Expected Answer: -1")
     }
     
     
@@ -101,7 +96,9 @@ class ViewController: UIViewController {
     
     @IBAction func inputDot(_ sender: UIButton) {
         // TODO: disallow things like 23.4215.2451
-        if !(last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + SpecialCharacters.rawValues()) || displayIsEmpty()) {
+        if !last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + SpecialCharacters.rawValues()) && !displayIsEmpty() {
+//            print(Operator.rawValues() + SpecialCharacters.rawValues())
+//            print(sender.currentTitle!)
             display(text: sender.currentTitle!, color: normalColor)
         }
     }
@@ -134,7 +131,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func getResult(_ sender: UIButton) {
-     
+        if outputScreen.text! != placeholderText {
+            let tokens = turnToRPN(tokenize(outputScreen.text!))
+            outputScreen.text = String(parseRPN(tokens)) // TODO trim zeroes after decimal point
+        }
     }
     
     

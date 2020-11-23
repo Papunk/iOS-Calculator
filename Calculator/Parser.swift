@@ -146,10 +146,16 @@ func tokenize(_ exp: String) -> [String] {
         }
     }
     
+    // Edge case: last element is a number
+    if Number.isMember(currentToken.first!) {
+        saveCurrentToken()
+    }
+    
     return tokens
 }
 
 func turnToRPN(_ exp: [String]) -> [String] {
+    // Implementation of Shunting-Yard algorithm to turn algebraic expression into reverse Polish notation
     var rpnQueue = [String]()
     var operatorStack = [String]()
     
@@ -202,6 +208,7 @@ func parseRPN(_ exp: [String]) -> Double {
             let a = answerStack.popLast()
             answerStack.append(calculate(a: a!, b: b!, op: token))
         }
+        print(answerStack)
     }
     
     return answerStack.first!
