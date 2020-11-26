@@ -11,10 +11,12 @@ class ViewController: UIViewController {
     
     @IBOutlet var outputScreen: UILabel!
     var placeholderText = "Hello"
-    let comp: CGFloat = 0.15 // TODO document these variables
-    var lightColor = UIColor(), normalColor = UIColor.label
-    var placesAfterDecimal = 2
+    // Colors used around the UI
+    var lightColor = UIColor.lightGray, normalColor = UIColor.label
+    let placesAfterDecimal = 2
     var gotResult = false
+    
+    var previousResults = [String]()
     
     // systemPink is the default color
     var colorQueue: Array<UIColor> = [.systemIndigo, .systemGreen, .systemOrange, .systemYellow, .systemPink]
@@ -45,12 +47,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lightColor = UIColor(red: comp, green: comp, blue: comp, alpha: 1)
         display(text: placeholderText, color: lightColor)
         
         customButtons = [mult, div, plus, min, eq]
         customBarButtons = [brush, clip, share]
-        
     }
     
     
@@ -142,10 +142,14 @@ class ViewController: UIViewController {
     
     func display(text: String, color: UIColor) {
         outputScreen.textColor = color
-        if outputScreen.text == placeholderText || gotResult {
+        if outputScreen.text == placeholderText || (gotResult && !Operator.isMember(text)) {
+//            if gotResult {
+//                previousResults.append(outputScreen.text!)
+//                print(previousResults)
+//            }
             clearScreen()
-            gotResult.toggle()
         }
+        gotResult = false
         outputScreen.text! += text
     }
     

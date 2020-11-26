@@ -208,7 +208,7 @@ func parseRPN(_ exp: [String]) -> Double {
             let a = answerStack.popLast()
             answerStack.append(calculate(a: a!, b: b!, op: token))
         }
-        print(answerStack)
+//        print(answerStack)
     }
     
     return answerStack.first!
