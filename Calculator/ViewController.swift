@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     let comp: CGFloat = 0.15 // TODO document these variables
     var lightColor = UIColor(), normalColor = UIColor.label
     var placesAfterDecimal = 2
+    var gotResult = false
     
     // systemPink is the default color
     var colorQueue: Array<UIColor> = [.systemIndigo, .systemGreen, .systemOrange, .systemYellow, .systemPink]
@@ -126,6 +127,7 @@ class ViewController: UIViewController {
         if outputScreen.text! != placeholderText {
             let tokens = turnToRPN(tokenize(outputScreen.text!))
             outputScreen.text = trimZeroes(num: parseRPN(tokens))
+            gotResult = true
         }
     }
     
@@ -140,15 +142,13 @@ class ViewController: UIViewController {
     
     func display(text: String, color: UIColor) {
         outputScreen.textColor = color
-        if outputScreen.text == placeholderText {
+        if outputScreen.text == placeholderText || gotResult {
             clearScreen()
+            gotResult.toggle()
         }
         outputScreen.text! += text
     }
     
-    func reduceTextSize() {
-        //this func will make sure that text doesnt slide off the end of the screen
-    }
     
     func last(of word: String, isMemberOf elems: [String]) -> Bool {
         // this method returns true if the last character of a string matches with any of the elements given and false otherwise
