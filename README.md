@@ -25,5 +25,5 @@ The purpose of this project is to learn how to use storyboards and Swift to deve
   - factorials
   - trigonometric functions
   - logarithms
-  - constants (e, π, )
+  - constants (e, π, etc...)
 
