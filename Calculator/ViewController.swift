@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     var placeholderText = "Hello"
     // Colors used around the UI
     var lightColor = UIColor.lightGray, normalColor = UIColor.label
+    
+    
     let placesAfterDecimal = 2
     var gotResult = false
     
@@ -32,7 +34,7 @@ class ViewController: UIViewController {
     @IBOutlet var min: UIButton!
     @IBOutlet var eq: UIButton!
     @IBOutlet var brush: UIBarButtonItem!
-    @IBOutlet var clip: UIBarButtonItem!
+    @IBOutlet var stack: UIBarButtonItem!
     @IBOutlet var share: UIBarButtonItem!
     
     var customButtons = Array<UIButton>()
@@ -50,7 +52,7 @@ class ViewController: UIViewController {
         display(text: placeholderText, color: lightColor)
         
         customButtons = [mult, div, plus, min, eq]
-        customBarButtons = [brush, clip, share]
+        customBarButtons = [brush, stack, share]
     }
     
     
@@ -118,16 +120,15 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func swipeToUndo(_ sender: UISwipeGestureRecognizer) {
-        
-    }
-    
-    
     @IBAction func getResult(_ sender: UIButton) {
         if outputScreen.text! != placeholderText {
-            let tokens = turnToRPN(tokenize(outputScreen.text!))
-            outputScreen.text = trimZeroes(num: parseRPN(tokens))
+            // generate and display the result
+            outputScreen.text = trimZeroes(num: parseRPN(turnToRPN(tokenize(outputScreen.text!))))
+            // flag
             gotResult = true
+            // add results to history
+            previousResults.append(outputScreen.text!)
+            print(previousResults)
         }
     }
     
@@ -143,10 +144,6 @@ class ViewController: UIViewController {
     func display(text: String, color: UIColor) {
         outputScreen.textColor = color
         if outputScreen.text == placeholderText || (gotResult && !Operator.isMember(text)) {
-//            if gotResult {
-//                previousResults.append(outputScreen.text!)
-//                print(previousResults)
-//            }
             clearScreen()
         }
         gotResult = false
@@ -224,8 +221,8 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func copyText(_ sender: UIBarButtonItem) {
-        
+    @IBAction func showResultHistory(_ sender: UIBarButtonItem) {
+        print(previousResults)
     }
     
 }

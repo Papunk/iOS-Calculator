@@ -308,7 +308,7 @@
                                                             <barButtonItem image="square.stack.3d.up" catalog="system" id="2Uv-8c-oE7">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                                 <connections>
-                                                                    <action selector="copyText:" destination="BYZ-38-t0r" id="kNt-SD-2mw"/>
+                                                                    <action selector="showResultHistory:" destination="BYZ-38-t0r" id="Sad-Rd-H7y"/>
                                                                 </connections>
                                                             </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="H1B-Wg-mGu"/>
@@ -347,7 +347,6 @@
                     </view>
                     <connections>
                         <outlet property="brush" destination="aV5-Y8-GsA" id="xHh-yX-NFf"/>
-                        <outlet property="clip" destination="2Uv-8c-oE7" id="sAD-n3-8Kf"/>
                         <outlet property="div" destination="YbC-p3-fBU" id="78b-HZ-mFZ"/>
                         <outlet property="eq" destination="YEy-IN-BIm" id="kNn-TD-FDb"/>
                         <outlet property="min" destination="zd9-ex-FMg" id="eJe-0N-T6b"/>
@@ -355,6 +354,7 @@
                         <outlet property="outputScreen" destination="Q9s-uP-aWB" id="cr6-HO-hez"/>
                         <outlet property="plus" destination="ypE-xW-qa2" id="iXy-nw-AwR"/>
                         <outlet property="share" destination="Uc5-vC-n8g" id="Hdc-U7-mqQ"/>
+                        <outlet property="stack" destination="2Uv-8c-oE7" id="sAD-n3-8Kf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

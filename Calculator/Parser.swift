@@ -5,8 +5,6 @@
 //  Created by Pedro Pagán on 10/22/20.
 //
 
-import Foundation
-
 
 enum Number: Int, CaseIterable {
     case zero = 0
@@ -93,6 +91,16 @@ enum Operator: String, CaseIterable {
         return values
     }
 }
+
+// REFACTORED CODE:
+
+
+
+
+
+
+
+
 
 // Operators:
 let mult = (sign: "×", precedence: 2, operation: {(a: Double, b: Double) -> Double in return a * b})
