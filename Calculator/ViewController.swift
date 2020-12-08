@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputNumber(_ sender: UIButton) {
-        if String(outputScreen.text!.last!) == SpecialCharacters.rBracket.rawValue {
+        if String(outputScreen.text!.last!) == AuxElem.rBracket.rawValue {
             display(text: Operator.mult.rawValue, color: normalColor)
         }
         display(text: sender.currentTitle!, color: normalColor)
@@ -69,10 +69,10 @@ class ViewController: UIViewController {
     
     @IBAction func inputLeftBracket(_ sender: UIButton) {
         // left brackets won't be placed after a dot
-        if !last(of: outputScreen.text!, isMemberOf: SpecialCharacters.dot.rawValue) {
+        if !last(of: outputScreen.text!, isMemberOf: AuxElem.dot.rawValue) {
             bracketStack += 1
             // implicit multiplication when placed after a number or right bracket
-            if Number.isMember(outputScreen.text!.last!) || last(of: outputScreen.text!, isMemberOf: SpecialCharacters.rBracket.rawValue) {
+            if Number.isMember(outputScreen.text!.last!) || last(of: outputScreen.text!, isMemberOf: AuxElem.rBracket.rawValue) {
                 display(text: Operator.mult.rawValue, color: normalColor)
             }
             display(text: sender.currentTitle!, color: normalColor)
@@ -82,7 +82,7 @@ class ViewController: UIViewController {
     
     @IBAction func inputRightBracket(_ sender: UIButton) {
         // right brackets won't be placed after an operator, a left bracket, or a dot
-        if !last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) {
+        if !last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + [AuxElem.lBracket.rawValue, AuxElem.dot.rawValue]) {
             if bracketStack > 0 {
                 bracketStack -= 1
                 display(text: sender.currentTitle!, color: normalColor)
@@ -93,14 +93,14 @@ class ViewController: UIViewController {
     
     @IBAction func inputDot(_ sender: UIButton) {
         // TODO: disallow things like 23.4215.2451
-        if !(last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + SpecialCharacters.rawValues()) || displayIsEmpty()) {
+        if !(last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + AuxElem.rawValues()) || displayIsEmpty()) {
             display(text: sender.currentTitle!, color: normalColor)
         }
     }
     
     
     @IBAction func inputOperator(_ sender: UIButton) {
-        if !(last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + [SpecialCharacters.lBracket.rawValue, SpecialCharacters.dot.rawValue]) || displayIsEmpty()) {
+        if !(last(of: outputScreen.text!, isMemberOf: Operator.rawValues() + [AuxElem.lBracket.rawValue, AuxElem.dot.rawValue]) || displayIsEmpty()) {
             display(text: sender.currentTitle!, color: normalColor)
         }
     }
@@ -168,14 +168,14 @@ class ViewController: UIViewController {
     
     func trimZeroes(num: Double) -> String {
         var stringNum = String(num)
-        let dotIndex = String(num).firstIndex(of: Character(SpecialCharacters.dot.rawValue))!
+        let dotIndex = String(num).firstIndex(of: Character(AuxElem.dot.rawValue))!
         
-        if stringNum.contains(Character(SpecialCharacters.dot.rawValue)) {
+        if stringNum.contains(Character(AuxElem.dot.rawValue)) {
             for i in stringNum.indices.reversed() {
                 if stringNum[i] == "0" {
                     stringNum.remove(at: i)
                 }
-                else if stringNum[i] == Character(SpecialCharacters.dot.rawValue) {
+                else if stringNum[i] == Character(AuxElem.dot.rawValue) {
                     return String(stringNum[stringNum.startIndex..<dotIndex])
                 }
                 else {
@@ -188,10 +188,10 @@ class ViewController: UIViewController {
     
     func trimPeriodic(num: Double) -> String {
         let stringNum = String(num)
-        let dotIndex = String(num).firstIndex(of: Character(SpecialCharacters.dot.rawValue))!
+        let dotIndex = String(num).firstIndex(of: Character(AuxElem.dot.rawValue))!
         var firstNum = ""
         for digit in stringNum[dotIndex..<stringNum.endIndex] {
-            if digit == Character(SpecialCharacters.dot.rawValue) {
+            if digit == Character(AuxElem.dot.rawValue) {
                 continue
             }
             if firstNum.isEmpty {

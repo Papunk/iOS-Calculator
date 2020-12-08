@@ -38,19 +38,11 @@ enum Number: Int, CaseIterable {
     static func isMember(_ num: Character) -> Bool {
         return isMember(String(num))
     }
-    
-    static func isValidDouble(_ str: String) -> Bool {
-        for char in str {
-            if !Number.isMember(char) && String(char) != SpecialCharacters.dot.rawValue {
-                return false
-            }
-        }
-        return true
-    }
+
     
 }
 
-enum SpecialCharacters: String, CaseIterable {
+enum AuxElem: String, CaseIterable {
     case lBracket = "("
     case rBracket = ")"
     case dot = "."
@@ -61,7 +53,7 @@ enum SpecialCharacters: String, CaseIterable {
     
     static func rawValues() -> [String] {
         var values = Array<String>()
-        for val in SpecialCharacters.allCases {
+        for val in AuxElem.allCases {
             values.append(val.rawValue)
         }
         return values
@@ -94,7 +86,23 @@ enum Operator: String, CaseIterable {
 
 // REFACTORED CODE:
 
+class MathElement {
+    
+    static func isMember(_ list: [String], _ token: String) -> Bool {
+        for elem in list {
+            if token == String(elem) {
+                return true
+            }
+        }
+        return false
+    }
+}
 
+class AuxElement: MathElement {
+    let lBracket = "("
+    let rBracket = ")"
+    let dot = "."
+}
 
 
 
@@ -141,7 +149,7 @@ func tokenize(_ exp: String) -> [String] {
     for char in exp {
         let elem = String(char)
         // number
-        if Number.isMember(elem) || elem == SpecialCharacters.dot.rawValue {
+        if Number.isMember(elem) || elem == AuxElem.dot.rawValue {
             currentToken += elem
         }
         // other
@@ -173,12 +181,12 @@ func turnToRPN(_ exp: [String]) -> [String] {
             rpnQueue.append(token)
         }
         // Opening Bracket
-        else if token == SpecialCharacters.lBracket.rawValue {
+        else if token == AuxElem.lBracket.rawValue {
             operatorStack.append(token)
         }
         // Closing bracket
-        else if token == SpecialCharacters.rBracket.rawValue {
-            while operatorStack.last != SpecialCharacters.lBracket.rawValue {
+        else if token == AuxElem.rBracket.rawValue {
+            while operatorStack.last != AuxElem.lBracket.rawValue {
                 rpnQueue.append(operatorStack.removeLast())
             }
             operatorStack.removeLast()
