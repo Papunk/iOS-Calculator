@@ -15,6 +15,7 @@ The purpose of this project is to learn how to use storyboards and Swift to deve
 - Native RPN support
 - Result history
 - Export result
+- Custom app icons
 
 ## Future
 - Siri integration
