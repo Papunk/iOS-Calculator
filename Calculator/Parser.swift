@@ -7,9 +7,7 @@
 
 
 
-
-
-// Operators:
+// operators used in RPN conversion:
 let mult = (sign: "×", precedence: 2, operation: {(a: Double, b: Double) -> Double in return a * b})
 let div = (sign: "÷", precedence: 2, operation: {(a: Double, b: Double) -> Double in return a / b})
 let add = (sign: "+", precedence: 1, operation: {(a: Double, b: Double) -> Double in return a + b})

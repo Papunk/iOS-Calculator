@@ -28,26 +28,40 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcf-Oh-bR6">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="221.66666666666666"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9s-uP-aWB">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EdQ-e6-D6R">
                                                                 <rect key="frame" x="10" y="0.0" width="355" height="221.66666666666666"/>
-                                                                <attributedString key="attributedText">
-                                                                    <fragment content="Hello">
-                                                                        <attributes>
-                                                                            <color key="NSColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <font key="NSFont" size="40" name="HelveticaNeue-Medium"/>
-                                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                        </attributes>
-                                                                    </fragment>
-                                                                </attributedString>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGl-oZ-Jzx">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="14.666666666666666"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9s-uP-aWB">
+                                                                        <rect key="frame" x="0.0" y="14.666666666666657" width="355" height="207"/>
+                                                                        <attributedString key="attributedText">
+                                                                            <fragment content="Hello">
+                                                                                <attributes>
+                                                                                    <color key="NSColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <font key="NSFont" size="40" name="HelveticaNeue-Medium"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="Q9s-uP-aWB" firstAttribute="height" secondItem="YGl-oZ-Jzx" secondAttribute="height" multiplier="70:5" id="gjM-jr-1xj"/>
+                                                                </constraints>
+                                                            </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="Q9s-uP-aWB" secondAttribute="trailing" constant="10" id="90e-Vh-kof"/>
-                                                            <constraint firstItem="Q9s-uP-aWB" firstAttribute="top" secondItem="qcf-Oh-bR6" secondAttribute="top" id="BZL-5U-GZb"/>
-                                                            <constraint firstItem="Q9s-uP-aWB" firstAttribute="leading" secondItem="qcf-Oh-bR6" secondAttribute="leading" constant="10" id="dbc-Bx-v3Y"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Q9s-uP-aWB" secondAttribute="bottom" id="zSS-Hv-2Cw"/>
+                                                            <constraint firstAttribute="trailing" secondItem="EdQ-e6-D6R" secondAttribute="trailing" constant="10" id="DR5-dA-VyI"/>
+                                                            <constraint firstItem="EdQ-e6-D6R" firstAttribute="leading" secondItem="qcf-Oh-bR6" secondAttribute="leading" constant="10" id="KUi-1Q-2C9"/>
+                                                            <constraint firstItem="EdQ-e6-D6R" firstAttribute="top" secondItem="qcf-Oh-bR6" secondAttribute="top" id="Rtz-p9-bDN"/>
+                                                            <constraint firstAttribute="bottom" secondItem="EdQ-e6-D6R" secondAttribute="bottom" id="fEi-hr-eWA"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GG7-Rb-dUU">
@@ -312,7 +326,7 @@
                                                                 </connections>
                                                             </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="H1B-Wg-mGu"/>
-                                                            <barButtonItem image="square.and.arrow.up" catalog="system" id="Uc5-vC-n8g">
+                                                            <barButtonItem image="number.square" catalog="system" id="Uc5-vC-n8g">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                             </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="Qtj-3j-4vL"/>
@@ -353,8 +367,9 @@
                         <outlet property="mult" destination="kAS-8l-UiF" id="5it-ui-VXQ"/>
                         <outlet property="outputScreen" destination="Q9s-uP-aWB" id="cr6-HO-hez"/>
                         <outlet property="plus" destination="ypE-xW-qa2" id="iXy-nw-AwR"/>
-                        <outlet property="share" destination="Uc5-vC-n8g" id="Hdc-U7-mqQ"/>
+                        <outlet property="rpnToggle" destination="Uc5-vC-n8g" id="E7g-PT-8iS"/>
                         <outlet property="stack" destination="2Uv-8c-oE7" id="sAD-n3-8Kf"/>
+                        <outlet property="topDisplay" destination="YGl-oZ-Jzx" id="4yL-5T-xyv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -363,8 +378,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="number.square" catalog="system" width="128" height="114"/>
         <image name="paintbrush" catalog="system" width="122" height="128"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="square.stack.3d.up" catalog="system" width="128" height="124"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
