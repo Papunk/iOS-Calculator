@@ -5,50 +5,6 @@
 //  Created by Pedro Pagán on 10/22/20.
 //
 
-enum Number: Int, CaseIterable {
-    case zero = 0
-    case one
-    case two
-    case three
-    case four
-    case five
-    case six
-    case seven
-    case eight
-    case nine
-}
-
-
-enum AuxElem: String, CaseIterable {
-    case lBracket = "("
-    case rBracket = ")"
-    case dot = "."
-}
-
-enum Operator: String, CaseIterable {
-    case mult = "×"
-    case div = "÷"
-    case add = "+"
-    case sub = "–"
-}
-
-
-// REFACTORED CODE
-
-func isNumber(_ item: Double) -> Bool {
-    return isNumber(String(item))
-}
-
-func isNumber(_ item: String) -> Bool {
-    for num in Number.allCases {
-        if String(num.rawValue) == item {
-            return true
-        }
-    }
-    return false
-}
-
-
 
 
 
@@ -92,7 +48,7 @@ func tokenize(_ exp: String) -> [String] {
     for char in exp {
         let elem = String(char)
         // number
-        if Number.isMember(elem) || elem == AuxElem.dot.rawValue {
+        if getKind(of: elem) == Math.num || elem == AuxElem.dot.rawValue {
             currentToken += elem
         }
         // other
@@ -106,7 +62,7 @@ func tokenize(_ exp: String) -> [String] {
     }
     
     // Edge case: last element is a number
-    if !currentToken.isEmpty && Number.isMember(currentToken.first!) {
+    if !currentToken.isEmpty && getKind(of: currentToken.first!) == Math.num {
         saveCurrentToken()
     }
     
@@ -120,7 +76,7 @@ func turnToRPN(_ exp: [String]) -> [String] {
     
     for token in exp {
         // Number
-        if Number.isMember(token.first!) {
+        if getKind(of: token.first!) == Math.num {
             rpnQueue.append(token)
         }
         // Opening Bracket
@@ -135,7 +91,7 @@ func turnToRPN(_ exp: [String]) -> [String] {
             operatorStack.removeLast()
         }
         // Operator
-        else if Operator.isMember(token) {
+        else if getKind(of: token) == Math.op {
             if operatorStack.isEmpty {
                 operatorStack.append(token)
             } else {
@@ -159,10 +115,10 @@ func parseRPN(_ exp: [String]) -> Double {
     var answerStack = [Double]()
     
     for token in exp {
-        if Number.isMember(token.first!) {
+        if getKind(of: token.first!) == Math.num {
             answerStack.append(Double(token)!)
         }
-        else if Operator.isMember(token) {
+        else if getKind(of: token) == Math.op {
             let b = answerStack.popLast()
             let a = answerStack.popLast()
             answerStack.append(calculate(a: a!, b: b!, op: token))
