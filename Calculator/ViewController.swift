@@ -226,9 +226,5 @@ class ViewController: UIViewController {
         print(previousResults)
     }
     
-    @IBAction func switchMode(_ sender: UIBarButtonItem) {
-        
-    }
-    
 }
 
