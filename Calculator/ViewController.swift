@@ -167,44 +167,6 @@ class ViewController: UIViewController {
         return last(of: word, isMemberOf: elems)
     }
     
-    func trimZeroes(num: Double) -> String {
-        var stringNum = String(num)
-        let dotIndex = String(num).firstIndex(of: Character(AuxElem.dot.rawValue))!
-        
-        if stringNum.contains(Character(AuxElem.dot.rawValue)) {
-            for i in stringNum.indices.reversed() {
-                if stringNum[i] == "0" {
-                    stringNum.remove(at: i)
-                }
-                else if stringNum[i] == Character(AuxElem.dot.rawValue) {
-                    return String(stringNum[stringNum.startIndex..<dotIndex])
-                }
-                else {
-                    break
-                }
-            }
-        }
-        return stringNum
-    }
-    
-    func trimPeriodic(num: Double) -> String {
-        let stringNum = String(num)
-        let dotIndex = String(num).firstIndex(of: Character(AuxElem.dot.rawValue))!
-        var firstNum = ""
-        for digit in stringNum[dotIndex..<stringNum.endIndex] {
-            if digit == Character(AuxElem.dot.rawValue) {
-                continue
-            }
-            if firstNum.isEmpty {
-                firstNum = String(digit)
-            }
-            else if String(digit) != firstNum {
-                return stringNum
-            }
-        }
-        return (String(stringNum[stringNum.startIndex...stringNum.index(after: dotIndex)]))
-    }
-    
     
     func displayIsEmpty() -> Bool {
         return outputScreen.text == placeholderText
