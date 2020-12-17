@@ -19,7 +19,7 @@ The purpose of this project is to learn how to use storyboards and Swift to deve
 ## Future
 - Siri integration
 - Customizable app icons
-- More functions on larger screens
+- More functions on larger screens (or sideways displays)
   - roots
   - exponents
   - factorials
