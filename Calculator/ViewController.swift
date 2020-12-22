@@ -186,6 +186,16 @@ class ViewController: UIViewController {
     
     @IBAction func showResultHistory(_ sender: UIBarButtonItem) {
         print(previousResults)
+        if !previousResults.isEmpty && previousResults.last! == outputScreen.text! {
+            previousResults.removeLast()
+        }
+        clearScreen()
+        if !previousResults.isEmpty {
+            display(text: previousResults.popLast()!, color: normalColor)
+        }
+        else {
+            display(text: placeholderText, color: lightColor)
+        }
     }
     
 }
