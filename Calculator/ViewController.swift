@@ -197,6 +197,5 @@ class ViewController: UIViewController {
             display(text: placeholderText, color: lightColor)
         }
     }
-    
 }
 
