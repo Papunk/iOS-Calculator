@@ -12,13 +12,9 @@ The purpose of this project is to learn how to use storyboards and Swift to deve
 
 
 ## In Progress
-- Native RPN support
 - Result history
-- Export result to clipboard
 
 ## Future
-- Siri integration
-- Customizable app icons
 - More functions on larger screens (or sideways displays)
   - roots
   - exponents
@@ -26,4 +22,3 @@ The purpose of this project is to learn how to use storyboards and Swift to deve
   - trigonometric functions
   - logarithms
   - constants (e, π, etc...)
-
