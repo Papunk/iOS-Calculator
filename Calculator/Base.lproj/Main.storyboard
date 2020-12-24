@@ -326,7 +326,7 @@
                                                                 </connections>
                                                             </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="H1B-Wg-mGu"/>
-                                                            <barButtonItem image="number.square" catalog="system" id="Uc5-vC-n8g">
+                                                            <barButtonItem image="number.square" catalog="system" id="Uc5-vC-n8g" userLabel="Toggle">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                             </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="Qtj-3j-4vL"/>
