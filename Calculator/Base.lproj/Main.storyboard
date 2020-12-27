@@ -39,6 +39,7 @@
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9s-uP-aWB">
                                                                         <rect key="frame" x="0.0" y="14.666666666666657" width="355" height="207"/>
+                                                                        <gestureRecognizers/>
                                                                         <attributedString key="attributedText">
                                                                             <fragment content="Hello">
                                                                                 <attributes>
@@ -49,6 +50,9 @@
                                                                             </fragment>
                                                                         </attributedString>
                                                                         <nil key="highlightedColor"/>
+                                                                        <connections>
+                                                                            <outletCollection property="gestureRecognizers" destination="Y3b-TY-xdI" appends="YES" id="UCt-Q8-8ia"/>
+                                                                        </connections>
                                                                     </label>
                                                                 </subviews>
                                                                 <constraints>
@@ -326,10 +330,6 @@
                                                                 </connections>
                                                             </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="H1B-Wg-mGu"/>
-                                                            <barButtonItem image="number.square" catalog="system" id="Uc5-vC-n8g" userLabel="Toggle">
-                                                                <color key="tintColor" systemColor="systemPinkColor"/>
-                                                            </barButtonItem>
-                                                            <barButtonItem systemItem="flexibleSpace" id="Qtj-3j-4vL"/>
                                                         </items>
                                                     </toolbar>
                                                 </subviews>
@@ -367,18 +367,21 @@
                         <outlet property="mult" destination="kAS-8l-UiF" id="5it-ui-VXQ"/>
                         <outlet property="outputScreen" destination="Q9s-uP-aWB" id="cr6-HO-hez"/>
                         <outlet property="plus" destination="ypE-xW-qa2" id="iXy-nw-AwR"/>
-                        <outlet property="rpnToggle" destination="Uc5-vC-n8g" id="E7g-PT-8iS"/>
                         <outlet property="stack" destination="2Uv-8c-oE7" id="sAD-n3-8Kf"/>
                         <outlet property="topDisplay" destination="YGl-oZ-Jzx" id="4yL-5T-xyv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Y3b-TY-xdI">
+                    <connections>
+                        <action selector="swipeToErase:" destination="BYZ-38-t0r" id="YA2-hq-p5x"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="139" y="102"/>
         </scene>
     </scenes>
     <resources>
-        <image name="number.square" catalog="system" width="128" height="114"/>
         <image name="paintbrush" catalog="system" width="122" height="128"/>
         <image name="square.stack.3d.up" catalog="system" width="128" height="124"/>
         <systemColor name="systemBackgroundColor">

@@ -36,7 +36,6 @@ class ViewController: UIViewController {
     @IBOutlet var eq: UIButton!
     @IBOutlet var brush: UIBarButtonItem!
     @IBOutlet var stack: UIBarButtonItem!
-    @IBOutlet var rpnToggle: UIBarButtonItem!
     
     var customButtons = Array<UIButton>()
     var customBarButtons = Array<UIBarButtonItem>()
@@ -53,7 +52,7 @@ class ViewController: UIViewController {
         display(text: placeholderText, color: lightColor)
         
         customButtons = [mult, div, plus, min, eq]
-        customBarButtons = [brush, stack, rpnToggle]
+        customBarButtons = [brush, stack]
     }
     
     
@@ -115,8 +114,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func swipeToErase(_ sender: UISwipeGestureRecognizer) {
-        if outputScreen.text?.count ?? -1 > 0 {
-            outputScreen.text?.removeLast()
+        if sender.direction == .left {
+            outputScreen.text!.removeLast()
         }
     }
     
