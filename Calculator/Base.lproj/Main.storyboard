@@ -67,6 +67,9 @@
                                                             <constraint firstItem="EdQ-e6-D6R" firstAttribute="top" secondItem="qcf-Oh-bR6" secondAttribute="top" id="Rtz-p9-bDN"/>
                                                             <constraint firstAttribute="bottom" secondItem="EdQ-e6-D6R" secondAttribute="bottom" id="fEi-hr-eWA"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="Y3b-TY-xdI" appends="YES" id="ygZ-oR-9vy"/>
+                                                        </connections>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GG7-Rb-dUU">
                                                         <rect key="frame" x="0.0" y="224.66666666666669" width="375" height="443.00000000000006"/>
@@ -363,6 +366,7 @@
                         <outlet property="brush" destination="aV5-Y8-GsA" id="xHh-yX-NFf"/>
                         <outlet property="div" destination="YbC-p3-fBU" id="78b-HZ-mFZ"/>
                         <outlet property="eq" destination="YEy-IN-BIm" id="kNn-TD-FDb"/>
+                        <outlet property="eraseSwipe" destination="Y3b-TY-xdI" id="yj9-Qm-zwX"/>
                         <outlet property="min" destination="zd9-ex-FMg" id="eJe-0N-T6b"/>
                         <outlet property="mult" destination="kAS-8l-UiF" id="5it-ui-VXQ"/>
                         <outlet property="outputScreen" destination="Q9s-uP-aWB" id="cr6-HO-hez"/>

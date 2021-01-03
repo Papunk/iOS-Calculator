@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var topDisplay: UILabel!
     @IBOutlet var outputScreen: UILabel!
+    @IBOutlet var eraseSwipe: UISwipeGestureRecognizer!
     var placeholderText = "Hello"
     // Colors used around the UI
     var lightColor = UIColor.lightGray, normalColor = UIColor.label
@@ -69,25 +70,24 @@ class ViewController: UIViewController {
     
     @IBAction func inputLeftBracket(_ sender: UIButton) {
         // left brackets won't be placed after a dot
-        if !last(of: outputScreen.text!, isMemberOf: AuxElem.dot.rawValue) {
-            bracketStack += 1
-            // implicit multiplication when placed after a number or right bracket
-            if getKind(of: outputScreen.text!.last!) == Math.num || last(of: outputScreen.text!, isMemberOf: AuxElem.rBracket.rawValue) {
-                display(text: Operator.mult.rawValue, color: normalColor)
-            }
-            display(text: sender.currentTitle!, color: normalColor)
+        guard !last(of: outputScreen.text!, isMemberOf: AuxElem.dot.rawValue) else { return }
+        
+        bracketStack += 1
+        // implicit multiplication when placed after a number or right bracket
+        if getKind(of: outputScreen.text!.last!) == Math.num || last(of: outputScreen.text!, isMemberOf: AuxElem.rBracket.rawValue) {
+            display(text: Operator.mult.rawValue, color: normalColor)
         }
+        display(text: sender.currentTitle!, color: normalColor)
     }
     
     
     @IBAction func inputRightBracket(_ sender: UIButton) {
         // right brackets won't be placed after an operator, a left bracket, or a dot
-        if getKind(of: outputScreen.text!.last!) != Math.op && !last(of: outputScreen.text!, isMemberOf: [AuxElem.lBracket.rawValue, AuxElem.dot.rawValue]) {
-            if bracketStack > 0 {
-                bracketStack -= 1
-                display(text: sender.currentTitle!, color: normalColor)
-            }
-        }
+        guard getKind(of: outputScreen.text!.last!) != Math.op && !last(of: outputScreen.text!, isMemberOf: [AuxElem.lBracket.rawValue, AuxElem.dot.rawValue]) else { return }
+        guard bracketStack > 0 else { return }
+        
+        bracketStack -= 1
+        display(text: sender.currentTitle!, color: normalColor)
     }
     
     
@@ -100,9 +100,9 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputOperator(_ sender: UIButton) {
-        if getKind(of: outputScreen.text!.last!) != Math.op && !(last(of: outputScreen.text!, isMemberOf: [AuxElem.lBracket.rawValue, AuxElem.dot.rawValue]) || displayIsEmpty()) {
-            display(text: sender.currentTitle!, color: normalColor)
-        }
+        guard getKind(of: outputScreen.text!.last!) != Math.op && !(last(of: outputScreen.text!, isMemberOf: [AuxElem.lBracket.rawValue, AuxElem.dot.rawValue]) || displayIsEmpty()) else { return }
+
+        display(text: sender.currentTitle!, color: normalColor)
     }
     
     
@@ -114,22 +114,22 @@ class ViewController: UIViewController {
     
     
     @IBAction func swipeToErase(_ sender: UISwipeGestureRecognizer) {
-        if sender.direction == .left {
-            outputScreen.text!.removeLast()
-        }
+        guard eraseSwipe.direction == .left else { return }
+        print("hello")
+        outputScreen.text!.removeLast()
     }
     
     
     @IBAction func getResult(_ sender: UIButton) {
-        if outputScreen.text! != placeholderText {
-            // generate and display the result
-            outputScreen.text = trimZeroes(num: parseRPN(turnToRPN(tokenize(outputScreen.text!))))
-            // flag
-            gotResult = true
-            // add results to history
-            previousResults.append(outputScreen.text!)
-            print(previousResults)
-        }
+        guard outputScreen.text! != placeholderText else { return }
+        
+        // generate and display the result
+        outputScreen.text = trimZeroes(num: parseRPN(turnToRPN(tokenize(outputScreen.text!))))
+        // flag
+        gotResult = true
+        // add results to history
+        previousResults.append(outputScreen.text!)
+        print(previousResults)
     }
     
     
