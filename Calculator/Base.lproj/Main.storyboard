@@ -318,15 +318,26 @@
                                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hK-Ex-POR">
                                                         <rect key="frame" x="0.0" y="670.66666666666663" width="375" height="63.333333333333371"/>
                                                         <items>
-                                                            <barButtonItem systemItem="flexibleSpace" id="Mdc-Hu-rCJ"/>
-                                                            <barButtonItem image="paintbrush" catalog="system" id="aV5-Y8-GsA">
+                                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="vd2-TS-wWC"/>
+                                                            <barButtonItem image="paintbrush.fill" catalog="system" id="aV5-Y8-GsA">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                                 <connections>
                                                                     <action selector="toggleColor:" destination="BYZ-38-t0r" id="i0m-0P-RNp"/>
                                                                 </connections>
                                                             </barButtonItem>
+                                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="I7E-WA-8nh"/>
+                                                            <barButtonItem image="plus.app.fill" catalog="system" id="Cri-g5-3Wi">
+                                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                            </barButtonItem>
+                                                            <barButtonItem systemItem="flexibleSpace" id="Mdc-Hu-rCJ"/>
+                                                            <barButtonItem image="gearshape.fill" catalog="system" id="rhW-kL-hYf">
+                                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                                <connections>
+                                                                    <segue destination="i7d-Jh-Ylw" kind="presentation" id="X8Y-BE-S8x"/>
+                                                                </connections>
+                                                            </barButtonItem>
                                                             <barButtonItem systemItem="flexibleSpace" id="b7R-2w-0We"/>
-                                                            <barButtonItem image="square.stack.3d.up" catalog="system" id="2Uv-8c-oE7">
+                                                            <barButtonItem image="square.stack.3d.up.fill" catalog="system" id="2Uv-8c-oE7">
                                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                                 <connections>
                                                                     <action selector="showResultHistory:" destination="BYZ-38-t0r" id="Sad-Rd-H7y"/>
@@ -384,15 +395,35 @@
             </objects>
             <point key="canvasLocation" x="139" y="102"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="zcV-g5-FFv">
+            <objects>
+                <viewController id="i7d-Jh-Ylw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3lR-3x-ydu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="BvX-bx-eTE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UV6-dH-KiH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="102"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="paintbrush" catalog="system" width="122" height="128"/>
-        <image name="square.stack.3d.up" catalog="system" width="128" height="124"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="121"/>
+        <image name="paintbrush.fill" catalog="system" width="122" height="128"/>
+        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
+        <image name="square.stack.3d.up.fill" catalog="system" width="128" height="124"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
