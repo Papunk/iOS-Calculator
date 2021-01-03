@@ -115,7 +115,7 @@ class ViewController: UIViewController {
     
     @IBAction func swipeToErase(_ sender: UISwipeGestureRecognizer) {
         guard eraseSwipe.direction == .left else { return }
-        print("hello")
+        print("hello") // testing
         outputScreen.text!.removeLast()
     }
     
