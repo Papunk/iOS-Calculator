@@ -35,14 +35,15 @@ class ViewController: UIViewController {
     @IBOutlet var plus: UIButton!
     @IBOutlet var min: UIButton!
     @IBOutlet var eq: UIButton!
+    
     @IBOutlet var brush: UIBarButtonItem!
     @IBOutlet var stack: UIBarButtonItem!
+    @IBOutlet var extra: UIBarButtonItem!
+    @IBOutlet var gear: UIBarButtonItem!
     
     var customButtons = Array<UIButton>()
     var customBarButtons = Array<UIBarButtonItem>()
-        
-//    let operators = (mult: "×", div: "÷", add: "+", sub: "–")
-    
+            
     var operatorElems: [String] = []
     
     var bracketStack = 0
@@ -53,7 +54,7 @@ class ViewController: UIViewController {
         display(text: placeholderText, color: lightColor)
         
         customButtons = [mult, div, plus, min, eq]
-        customBarButtons = [brush, stack]
+        customBarButtons = [brush, stack, extra, gear]
     }
     
     
