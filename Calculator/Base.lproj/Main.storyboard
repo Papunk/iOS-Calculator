@@ -374,11 +374,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="add" destination="Cri-g5-3Wi" id="moB-HZ-9CM"/>
                         <outlet property="brush" destination="aV5-Y8-GsA" id="xHh-yX-NFf"/>
                         <outlet property="div" destination="YbC-p3-fBU" id="78b-HZ-mFZ"/>
                         <outlet property="eq" destination="YEy-IN-BIm" id="kNn-TD-FDb"/>
                         <outlet property="eraseSwipe" destination="Y3b-TY-xdI" id="yj9-Qm-zwX"/>
+                        <outlet property="extra" destination="Cri-g5-3Wi" id="Uej-5q-aTj"/>
                         <outlet property="gear" destination="rhW-kL-hYf" id="d30-G1-fgh"/>
                         <outlet property="min" destination="zd9-ex-FMg" id="eJe-0N-T6b"/>
                         <outlet property="mult" destination="kAS-8l-UiF" id="5it-ui-VXQ"/>
