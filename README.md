@@ -2,7 +2,7 @@
 
 The purpose of this project is to learn how to use storyboards and Swift to develop a fully functional iOS calculator app in Xcode
 
-<kbd> <img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Hello.png" width="200"> </kbd> <kbd> <img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Math.png" width="200"> </kbd>
+<img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Hello.png" width="200"> <img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Math.png" width="200">
 
 ## Features
 - Clean UI with customizable colors
