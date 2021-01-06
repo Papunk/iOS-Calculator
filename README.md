@@ -10,7 +10,7 @@ The purpose of this project is to learn how to use storyboards and Swift to deve
 - Result history
 
 #### Color Themes
-<img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Orange.png" width="65px"> <img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Indigo.png" width="65px"> <img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Green.png" width="65px"> <img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Yellow.png" width="65px">
+<img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Orange.png" width="100px"> <img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Indigo.png" width="100px"> <img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Green.png" width="100px"> <img src="https://github.com/Papunk/iOS-Calculator/blob/main/Screenshots/Yellow.png" width="100px">
 
 ## In progress
 - More functions on larger screens (or sideways displays)
