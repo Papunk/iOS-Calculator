@@ -407,6 +407,7 @@
                         <viewLayoutGuide key="safeArea" id="BvX-bx-eTE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="MAA-Zz-vmg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UV6-dH-KiH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -57,6 +57,10 @@ class ViewController: UIViewController {
         customBarButtons = [brush, stack, extra, gear]
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+    
     
     // Event handlers //
     
@@ -132,6 +136,7 @@ class ViewController: UIViewController {
         previousResults.append(outputScreen.text!)
         print(previousResults)
     }
+
     
     
     // Helper functions //
